@@ -9,8 +9,8 @@ import AddIcon from "@mui/icons-material/Add";
 interface BaseProps {
   header: string;
   breadcrumbs: { text: string; link: string }[];
-  importFunction: () => void;
-  exportFunction: () => void;
+  importFunction?: () => void;
+  exportFunction?: () => void;
 }
 
 interface WithButton extends BaseProps {

@@ -1,4 +1,5 @@
 import MoreVertIcon from "@mui/icons-material/MoreVert";
+import { Link } from "react-router-dom";
 
 interface WithImage {
   imagePath?: string;
@@ -19,14 +20,16 @@ const TableData: React.FC<Props> = ({ defaultData, isAction, withImage }) => {
             {withImage.text != null && (
               <>
                 <div className="max-h-8 min-h-8 min-w-8 max-w-8 shrink-0 overflow-hidden rounded-full">
-                  <img
-                    src={
-                      withImage.imagePath
-                        ? withImage.imagePath
-                        : "/src/assets/images/Avatar.png"
-                    }
-                    className="object-cover"
-                  />
+                  <Link to="/profile">
+                    <img
+                      src={
+                        withImage.imagePath
+                          ? withImage.imagePath
+                          : "/src/assets/images/Avatar.png"
+                      }
+                      className="object-cover"
+                    />
+                  </Link>
                 </div>
                 <span>{withImage.text}</span>
               </>

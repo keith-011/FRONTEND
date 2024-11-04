@@ -35,7 +35,7 @@ const router = createBrowserRouter(
         <Route path="departments" element={<Department />} />
         <Route path="divisions" element={<Division />} />
 
-        <Route path="profile/:id" element={<Profile />} />
+        <Route path="profile" element={<Profile />} />
       </Route>
       <Route path="testing" element={<TestingTable />} />
       <Route path="testingNext" element={<TestingVersion2 />} />
