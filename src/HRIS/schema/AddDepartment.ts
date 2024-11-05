@@ -32,9 +32,11 @@ export const AddDepartmentSchema = (
     department_head: z
       .string()
       .nullable()
+      .transform((value) => {
+        return value === "" ? null : value;
+      })
       .refine(
-        (value) =>
-          value === "none" || z.string().uuid().safeParse(value).success,
+        (value) => value === null || z.string().uuid().safeParse(value).success,
         "Invalid input.",
       )
       .optional(),

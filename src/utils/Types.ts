@@ -149,3 +149,34 @@ export const educationLevelData: SelectIdDescription[] = [
   { id: "College", description: "College" },
   { id: "Graduate Studies", description: "Graduate Studies" },
 ];
+export interface UserProfile {
+  created_at: Date;
+  employee_number_pcc: string;
+  employee_number_ch: string;
+  email: string;
+  fullname: string;
+  birthday: Date;
+  gender: string;
+  civil_status: string;
+  nationality: string;
+  image_path: string;
+  primary_contact: string;
+  secondary_contact: string;
+  present_address: string;
+  permanent_address: string;
+  sss: string;
+  bir_tin: string;
+  gsis: string;
+  pag_ibig: string;
+  philhealth: string;
+  plantilla: string;
+  designation: string;
+  salary_grade: number;
+  category: string;
+  admin_function: boolean;
+  status: string;
+  department: string;
+  department_head: string;
+  civil_eligibility: string;
+  daily_rate: string;
+}
