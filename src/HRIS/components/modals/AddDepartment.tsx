@@ -52,7 +52,7 @@ const AddDepartment = () => {
       data.department_head = null;
     }
     try {
-      const toPost = await axios.post("/v2/insert/department", data);
+      const toPost = await axios.post("/v1/insert/department", data);
       toast.success(toPost.data.message);
       closeModal(true);
       reset();
