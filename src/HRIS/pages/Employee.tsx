@@ -104,6 +104,7 @@ const Employee = () => {
                         withImage={{
                           imagePath: item.image_path,
                           text: item.name,
+                          userID: item.employee_number,
                         }}
                       />
                       <TableData defaultData={item.email} />

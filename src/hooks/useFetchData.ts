@@ -14,7 +14,7 @@ export const useFetchData = <T>(url: string, refresh: boolean) => {
         const fetchData = await axios.get(url, {
           signal: controller.signal,
         });
-        setTableData(fetchData.data.rows);
+        setTableData(fetchData.data);
         setLoading(false);
       } catch (error) {
         setError(ToastHandleAxiosCatch(error));

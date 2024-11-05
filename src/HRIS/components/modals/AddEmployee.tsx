@@ -155,10 +155,7 @@ const AddEmployee: React.FC = () => {
   const onFormSubmit = formMethods.handleSubmit(async (data) => {
     console.log(fetchData);
     try {
-      const insertNewEmployee = await axios.post(
-        "/v1/forms/insert/employee",
-        data,
-      );
+      const insertNewEmployee = await axios.post("/v1/insert/employee", data);
       toast.success(insertNewEmployee.data.message);
       closeModal(true);
       formMethods.reset();

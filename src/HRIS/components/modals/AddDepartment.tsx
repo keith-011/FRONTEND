@@ -52,7 +52,7 @@ const AddDepartment = () => {
       data.department_head = null;
     }
     try {
-      const toPost = await axios.post("/v1/forms/insert/department", data);
+      const toPost = await axios.post("/v2/insert/department", data);
       toast.success(toPost.data.message);
       closeModal(true);
       reset();
@@ -68,15 +68,15 @@ const AddDepartment = () => {
     (async () => {
       try {
         const [fetchDepartmentHeads, fetchDepartmentNames] = await Promise.all([
-          axios.get("/v1/forms/select/department_head", {
+          axios.get("/v1/select/department_head", {
             signal: controller.signal,
           }),
           axios.get("/v1/existence/departments", {
             signal: controller.signal,
           }),
         ]);
-        setNonHeadList(fetchDepartmentHeads.data.rows);
-        setDepartmentNames(fetchDepartmentNames.data.rows);
+        setNonHeadList(fetchDepartmentHeads.data);
+        setDepartmentNames(fetchDepartmentNames.data);
       } catch (error) {
         setError(ToastHandleAxiosCatch(error));
       } finally {
