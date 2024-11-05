@@ -110,6 +110,7 @@ const Department = () => {
                         withImage={{
                           imagePath: item.image_path,
                           text: item.head,
+                          employeeNumberPCC: item.id,
                         }}
                       />
                       <TableData defaultData={item.employee_count} />

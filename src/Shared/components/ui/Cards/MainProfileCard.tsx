@@ -1,17 +1,18 @@
 import React from "react";
 import SettingsIcon from "@mui/icons-material/Settings";
 import ProfileNavigationButton from "./ProfileNavigationButton";
+import { wordedDate } from "../../../../utils/Functions";
 
 interface MainProfileProps {
   employeeImagePath: string;
   employmentStatus: string;
   rightContent: Array<{ field?: string; value?: string }>;
-  leftContent: { 
-    employeeName: string, 
-    plantillaPosition: string, 
-    department: string, 
-    employeeId: string, 
-    joinedDate:string
+  leftContent: {
+    employeeName: string;
+    plantillaPosition: string;
+    department: string;
+    employeeId: string;
+    joinedDate: Date;
   };
 }
 

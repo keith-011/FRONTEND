@@ -196,13 +196,13 @@ const EmploymentDetails: React.FC<Props> = ({
         </FormInput>
 
         <FormInput
-          labelText="Civil Service Eligility"
+          labelText="Civil Service Eligibility"
           errorMessage={errors.civilServiceEligibility?.message}
         >
           <input
             type="text"
             maxLength={75}
-            placeholder="Civil Service Eligility"
+            placeholder="Civil Service Eligibility"
             className="modal-input"
             {...register("civilServiceEligibility")}
           />

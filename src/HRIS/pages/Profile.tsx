@@ -5,6 +5,16 @@ import PageHeader from "../components/content/PageHeader";
 import MainProfile from "../../Shared/components/ui/Cards/MainProfileCard";
 import RowCardStyle from "../../Shared/components/ui/Cards/RowCards";
 import ColumnCardStyle from "../../Shared/components/ui/Cards/ColumnCards";
+// NEEDS RESOLVE
+import { useState } from "react";
+import { useParams } from "react-router-dom";
+import PageHeader from "../components/content/PageHeader";
+import MainProfile from "../../Shared/components/ui/Cards/MainProfileCard";
+import ProfileDetails from "../../Shared/components/ui/Cards/RowCards";
+import { useModalContext } from "../context/ModalContext";
+import { useFetchData } from "../../hooks/useFetchData";
+import { UserProfile } from "../../utils/Types";
+import { wordedDate } from "../../utils/Functions";
 
 const Profile = () => {
   const breadcrumbs = [

@@ -1,7 +1,6 @@
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { Link } from "react-router-dom";
 
-
 interface WithImage {
   employeeNumberPCC: string;
   imagePath?: string;
