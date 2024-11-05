@@ -63,11 +63,6 @@ const DashboardSidebar: React.FC<Props> = ({
               Icon={GroupWorkOutlinedIcon}
               text="Departments"
             />
-            <SidebarButton
-              link="divisions"
-              Icon={WorkspacesOutlinedIcon}
-              text="Divisions"
-            />
 
             <SidebarSeparator
               text="FILES"

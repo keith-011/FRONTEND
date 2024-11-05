@@ -3,7 +3,7 @@ import { useFormContext } from "react-hook-form";
 
 import FormCategory from "../../FormCategory";
 import FormInput from "../../../../../Shared/components/ui/layout/FormInput";
-import { NewSchemaAddEmployeeType } from "../../../../schema/HRISAddEmployee";
+import { NewSchemaAddEmployeeType } from "../../../../schema/AddEmployee";
 
 interface Props {
   activeCategory: number | null;

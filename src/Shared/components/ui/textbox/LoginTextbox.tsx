@@ -2,18 +2,20 @@ import { twMerge } from "tailwind-merge";
 
 import EmailIcon from "@mui/icons-material/Email";
 import LockIcon from "@mui/icons-material/Lock";
+import { UseFormRegisterReturn } from "react-hook-form";
 
 interface Props {
   type: "text" | "password";
   className?: string;
+  register: UseFormRegisterReturn;
 }
 
-const LoginTextbox: React.FC<Props> = ({ type, className }) => {
+const LoginTextbox: React.FC<Props> = ({ type, className, register }) => {
   return (
     <>
       <div
         className={twMerge(
-          "flex w-full rounded outline outline-1 outline-accent-200 focus-within:outline-accent-400",
+          "flex w-full rounded border border-accent-200 focus-within:border-accent-400",
           className,
         )}
       >
@@ -28,6 +30,7 @@ const LoginTextbox: React.FC<Props> = ({ type, className }) => {
             placeholder="Employee Number"
             maxLength={50}
             className="w-full bg-inherit px-3 text-sm focus:outline-none"
+            {...register}
           />
         )}
 
@@ -37,6 +40,7 @@ const LoginTextbox: React.FC<Props> = ({ type, className }) => {
             placeholder="Password"
             maxLength={50}
             className="w-full bg-inherit px-3 text-xl focus:outline-none"
+            {...register}
           />
         )}
       </div>

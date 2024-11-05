@@ -1,39 +1,13 @@
 import { z, ZodIssueCode } from "zod";
+
+import { TextInput, SelectInputRequired } from "../../utils/ZodFunctions";
+
 import {
   AddEmployeeFetchData,
   civilStatusData,
   educationLevelData,
   genderData,
-} from "../../utils/Globals";
-
-const TextInput = (required: boolean, min: number, max: number) => {
-  if (required) {
-    return z
-      .string()
-      .trim()
-      .min(min, "This field is required.")
-      .max(max, `This field only accepts up to ${max} characters.`);
-  } else {
-    return z
-      .string()
-      .trim()
-      .max(max, `This field only accepts up to ${max} characters.`);
-  }
-};
-
-const SelectInputRequired = z
-  .string()
-  .trim()
-  .min(1, "This field is required.")
-  .superRefine((data, ctx) => {
-    if (!z.string().uuid().safeParse(data).success) {
-      ctx.addIssue({
-        code: ZodIssueCode.custom,
-        message: "Invalid input.",
-      });
-      return;
-    }
-  });
+} from "../../utils/Types";
 
 export const NewSchemaAddEmployee = (
   empNumberPcc: AddEmployeeFetchData["existence"]["employeeNumberPCC"],
@@ -128,7 +102,10 @@ export const NewSchemaAddEmployee = (
           (value) => civilStatusData.some((item) => item.id === value),
           "Invalid input.",
         ),
-      nationality: TextInput(true, 1, 50),
+      nationality: TextInput(true, 1, 50).regex(
+        /^[a-zA-Z\s]+$/,
+        "Invalid input.",
+      ),
 
       // Address & Contact
       primaryContact: TextInput(true, 1, 25)
@@ -333,7 +310,7 @@ export const NewSchemaAddEmployee = (
         )
         .refine(
           (value) =>
-            !philHealthList.some((field) => value === field.philHealth),
+            !philHealthList.some((field) => value === field.philhealth),
           "PhilHealth number already exists.",
         ),
     })
@@ -361,27 +338,3 @@ export const NewSchemaAddEmployee = (
 export type NewSchemaAddEmployeeType = z.infer<
   ReturnType<typeof NewSchemaAddEmployee>
 >;
-
-// const formSchema = z.object({
-//   textbox: z
-//     .string()
-//     .transform((value) => {
-//       return value === "" ? null : value;
-//     })
-//     .superRefine((value, ctx) => {
-//       if (value === null) {
-
-//       }
-//     }),
-// });
-
-// const formData = {
-//   textbox: null,
-// };
-
-// try {
-//   const result = formSchema.parse(formData);
-//   console.log(result);
-// } catch (error: any) {
-//   console.error(error.errors);
-// }

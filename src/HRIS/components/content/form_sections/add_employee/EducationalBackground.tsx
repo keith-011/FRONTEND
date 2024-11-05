@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useFieldArray, useFormContext } from "react-hook-form";
 
-import { educationLevelData } from "../../../../../utils/Globals";
+import { educationLevelData } from "../../../../../utils/Types";
 
 import DefaultButton from "../../../../../Shared/components/ui/button/DefaultButton";
 import FormInput from "../../../../../Shared/components/ui/layout/FormInput";
@@ -9,7 +9,7 @@ import FormCategory from "../../FormCategory";
 
 import RemoveOutlinedIcon from "@mui/icons-material/RemoveOutlined";
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
-import { NewSchemaAddEmployeeType } from "../../../../schema/HRISAddEmployee";
+import { NewSchemaAddEmployeeType } from "../../../../schema/AddEmployee";
 import CustomSelect from "../../../../../Shared/components/ui/dropdown/CustomSelect";
 import React from "react";
 

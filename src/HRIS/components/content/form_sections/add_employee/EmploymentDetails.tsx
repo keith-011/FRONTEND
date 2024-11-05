@@ -4,21 +4,20 @@ import { useFormContext } from "react-hook-form";
 import {
   SelectIdDescription,
   FormPlantillaList,
-  DivisionTable,
   FormCategoryList,
-  DepartmentTable,
-} from "../../../../../utils/Globals";
+  DepartmentAndHeads,
+} from "../../../../../utils/Types";
 
 import FormCategory from "../../FormCategory";
 import CustomSelect from "../../../../../Shared/components/ui/dropdown/CustomSelect";
 import FormInput from "../../../../../Shared/components/ui/layout/FormInput";
-import { NewSchemaAddEmployeeType } from "../../../../schema/HRISAddEmployee";
+import { NewSchemaAddEmployeeType } from "../../../../schema/AddEmployee";
 
 interface Props {
   activeCategory: number | null;
   handleCategoryClick: (id: number) => void;
   plantillaData: FormPlantillaList[];
-  departmentData: DepartmentTable[];
+  departmentData: DepartmentAndHeads[];
   categoryData: FormCategoryList[];
   statusData: SelectIdDescription[];
 }

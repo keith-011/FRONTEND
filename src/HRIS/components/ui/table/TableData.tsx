@@ -31,7 +31,6 @@ const TableData: React.FC<Props> = ({ defaultData, isAction, withImage }) => {
                 <span>{withImage.text}</span>
               </>
             )}
-            {withImage.text == null && <span>None</span>}
           </div>
         )}
         {isAction && (

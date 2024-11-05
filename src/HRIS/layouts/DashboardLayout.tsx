@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import DashboardHeader from "../components/content/DashboardHeader";
 import DashboardSidebar from "../components/content/DashboardSidebar";
 import ModalBase from "../components/modals/ModalBase";
-import { ModalContextProvider } from "../context/HRISContext";
+import { ModalContextProvider } from "../context/ModalContext";
 
 const DashboardLayout: React.FC = () => {
   const [isMobile, isMobileScreen] = useState<boolean>(true);

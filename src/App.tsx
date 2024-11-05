@@ -16,7 +16,6 @@ import Forgot from "./HRIS/pages/Forgot";
 import Dashboard from "./HRIS/pages/Dashboard";
 import Employee from "./HRIS/pages/Employee";
 import Department from "./HRIS/pages/Department";
-import Division from "./HRIS/pages/Division";
 import Profile from "./HRIS/pages/Profile";
 import TestingTable from "./HRIS/pages/TestingTable";
 import TestingVersion2 from "./HRIS/pages/TestingVersion2";
@@ -33,7 +32,6 @@ const router = createBrowserRouter(
         <Route path="dashboard" element={<TestingTable />} />
         <Route path="employees" element={<Employee />} />
         <Route path="departments" element={<Department />} />
-        <Route path="divisions" element={<Division />} />
 
         <Route path="profile/:id" element={<Profile />} />
       </Route>

@@ -1,18 +1,14 @@
 import { UseFormRegisterReturn } from "react-hook-form";
 import {
-  DepartmentTable,
-  DivisionTable,
+  DepartmentAndHeads,
   FormPlantillaList,
   SelectIdDescription,
-} from "../../../../utils/Globals";
+} from "../../../../utils/Types";
 
 interface BaseProps {
   register: UseFormRegisterReturn;
   defaultNone?: boolean;
-  typeOfData:
-    | "IdAndDescription"
-    | "DepartmentsCategorized"
-    | "DivisionsCategorized";
+  typeOfData: "IdAndDescription" | "DepartmentsCategorized";
 }
 
 interface IdAndDescription extends BaseProps {
@@ -22,18 +18,10 @@ interface IdAndDescription extends BaseProps {
 
 interface CategorizedDepartments extends BaseProps {
   typeOfData: "DepartmentsCategorized";
-  data: DepartmentTable[];
+  data: DepartmentAndHeads[];
 }
 
-interface CategorizedDivisions extends BaseProps {
-  typeOfData: "DivisionsCategorized";
-  data: DivisionTable[];
-}
-
-type FinalProps =
-  | IdAndDescription
-  | CategorizedDepartments
-  | CategorizedDivisions;
+type FinalProps = IdAndDescription | CategorizedDepartments;
 
 const CustomSelect: React.FC<FinalProps> = ({
   register,
@@ -64,16 +52,6 @@ const CustomSelect: React.FC<FinalProps> = ({
               {item.department_head == null
                 ? `${item.department} (No head)`
                 : item.department}
-            </option>
-          ))}
-
-        {typeOfData === "DivisionsCategorized" &&
-          data.length > 0 &&
-          data.map((item) => (
-            <option key={item.id} value={item.id}>
-              {item.division_head == null
-                ? `${item.division} (No head)`
-                : item.division}
             </option>
           ))}
       </select>

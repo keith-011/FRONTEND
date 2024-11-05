@@ -15,10 +15,9 @@ export const useFetchData = <T>(url: string, refresh: boolean) => {
           signal: controller.signal,
         });
         setTableData(fetchData.data.rows);
+        setLoading(false);
       } catch (error) {
         setError(ToastHandleAxiosCatch(error));
-      } finally {
-        setLoading(false);
       }
     })();
 
