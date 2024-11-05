@@ -5,7 +5,7 @@ import ProfileNavigationButton from "./ProfileNavigationButton";
 interface MainProfileProps {
   employeeImagePath: string;
   employmentStatus: string;
-  rightContent: Array<{ field?: string; value: string }>;
+  rightContent: Array<{ field?: string; value?: string }>;
   leftContent: { 
     employeeName: string, 
     plantillaPosition: string, 
@@ -72,7 +72,7 @@ const MainProfile: React.FC<MainProfileProps> = ({
               <span className={`ml-2 h-2 w-2 rounded-full ${getStatusColor(employmentStatus)}`}></span>
               <span className={`${profileDefaultSize} font-medium`}>{employmentStatus}</span>
               <button className="flex">
-                <SettingsIcon style={{ fontSize: "12px" }} />
+                <SettingsIcon fontSize="inherit" />
               </button>
             </div>
           </div>
@@ -80,7 +80,7 @@ const MainProfile: React.FC<MainProfileProps> = ({
       </div>
 
       {/* Divider */}
-      <div className="ml-6 mr-6 hidden border border-dashed border-accent-150 md:block gap-3"></div>
+      <div className="ml-6 mr-6 hidden border border-dashed border-accent-150 md:block"></div>
       <div className="mb-6 mt-6 block border-t border-dashed border-accent-150 md:hidden"></div>
 
       {/* Right Side Content */}

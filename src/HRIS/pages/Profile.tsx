@@ -1,74 +1,53 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import { useParams } from "react-router-dom";
 import PageHeader from "../components/content/PageHeader";
 import MainProfile from "../../Shared/components/ui/Cards/MainProfileCard";
-import ProfileDetails from "../../Shared/components/ui/Cards/ProfileDetailsCards";
+import ProfileDetails from "../../Shared/components/ui/Cards/RowCards";
 
 const Profile = () => {
-  // const { id } = useParams<{ id: string }>();
-
   const breadcrumbs = [
     { text: "Employees", link: "/employees" },
     { text: "Profile", link: "/profile" },
   ];
 
-  // Sections
-  const mainProfile = {
-    joinedDate: "2022-01-15",
-    reportsTo: "Jane Smith",
-  };
+  const { employeeNumberPCC } = useParams();
+  const [profileData, setProfileData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  const accountInfo = {
-    accessLevel: "Admin",
-    employmentStatus: "Active",
-    employeeId: "978465",
-    email: "johndoeee@example.com",
-  };
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("/v1/profile/profile_information", {
+          params: { employeeNumberPCC },
+        });
+        setProfileData(response.data);
+      } catch (err) {
+        console.error("Error fetching profile data:", err);
+        setError(error);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  const contactInfo = {
-    phoneNumber1: "09123456789",
-    phoneNumber2: "09987654321",
-    presentAddress: "1234 Gumamela Street, Manuyo Dos, Las Piñas City",
-    permanentAddress: "Same as current address",
-  };
+    if (employeeNumberPCC) {
+      fetchData();
+    }
+  }, [employeeNumberPCC]);
 
-  const personalInfo = {
-    employeeName: "John Doe",
-    birthday: "1990-05-10",
-    gender: "Male",
-    nationality: "Filipino",
-    maritalStatus: "Single",
-  };
+  if (loading) return <div>Loading...</div>;
+  if (!profileData) return <div>No profile data available</div>;
 
-  const governmentNumbers = {
-    sss: "12-3456789-12",
-    birTin: "123-456-789",
-    gsis: "1234567890",
-    pagibig: "1234-5678-9012",
-    philhealth: "12-123456789-1",
-  };
-
-  const employmentDetails = {
-    plantillaPosition: "Assistant Professor I",
-    salaryGrade: "2",
-    employeeStatus: "Casual",
-    civilServiceEligibility: "Licensure Examination for Teachers",
-    dailyRate: "650",
-    supervisor: "Jane E. Doe",
-  };
-
-  const employmentRole = {
-    department: "General Education Department",
-    category: "Teaching (Part-Time)",
-    adminFunction: "With Admin Function",
-  };
-
-  const educationalAttainment = {
-    schoolName: "Polytechnic University of the Philippines (Sta.Mesa)",
-    program: "Bachelor of Science in Computer Science",
-    yearStarted: "2015",
-    yearGraduated: "2019"
-  };
+  const {
+    fullName,
+    profile: { birthday, gender, civilStatus, nationality },
+    contact: { primaryContact, secondaryContact, presentAddress, permanentAddress },
+    credentials: { employeeNumber, email },
+    education: { schoolName, courseName, schoolTimePeriod },
+    employment: { designation, civilEligibility, dailyRate },
+    governmentNumbers: { sss, birTin, gsis, pagIbig, philHealth },
+  } = profileData;
 
   return (
     <>
@@ -77,100 +56,88 @@ const Profile = () => {
         <MainProfile
           employeeImagePath="/src/assets/images/Avatar.png"
           leftContent={{
-            employeeName: personalInfo.employeeName,
-            plantillaPosition: employmentDetails.plantillaPosition,
-            department: employmentRole.department,
-            employeeId: accountInfo.employeeId,
-            joinedDate: mainProfile.joinedDate,
+            employeeName: fullName,
+            plantillaPosition: designation,
+            department: "",
+            employeeId: employeeNumber,
+            joinedDate: "", 
           }}
           rightContent={[
-            { field: "Phone", value: contactInfo.phoneNumber1 },
-            { value: contactInfo.phoneNumber2 },
-            { field: "Email", value: accountInfo.email },
-            { field: "Birthday", value: personalInfo.birthday },
-            { field: "Address", value: contactInfo.presentAddress },
-            { field: "Gender", value: personalInfo.gender },
-            { field: "Reports to", value: mainProfile.reportsTo },
+            { field: "Phone", value: primaryContact },
+            { value: secondaryContact },
+            { field: "Email", value: email },
+            { field: "Birthday", value: birthday },
+            { field: "Address", value: presentAddress},
+            { field: "Gender", value: gender },
           ]}
-          employmentStatus={accountInfo.employmentStatus}
+          employmentStatus={"Active"}
         />
         <div className="flex flex-col gap-6 md:flex-row">
           <div className="md:w-2/5">
-          <ProfileDetails
-            header="Account Information"
-            details={[
-              { field: "Access Level", value: accountInfo.accessLevel },
-              { field: "Employment Status",value: accountInfo.employmentStatus,},
-              { field: "Employee ID", value: accountInfo.employeeId },
-              { field: "Email", value: accountInfo.email }
-            ]}
-          />
+            <ProfileDetails
+              header="Account Information"
+              details={[
+                { field: "Email", value: email },
+                { field: "Employee ID", value: employeeNumber },
+              ]}
+            />
           </div>
-          <div className="md:w-3/5 ">
-          <ProfileDetails
-            header="Address & Contact Information"
-            details={[
-              { field: "Primary Phone", value: contactInfo.phoneNumber1 },
-              { field: "Secondary Phone", value: contactInfo.phoneNumber2 },
-              { field: "Present Address", value: contactInfo.presentAddress },
-              { field: "Permanent Address",value: contactInfo.permanentAddress,},
-            ]}
-          />
+          <div className="md:w-3/5">
+            <ProfileDetails
+              header="Address & Contact Information"
+              details={[
+                { field: "Primary Phone", value: primaryContact },
+                { field: "Secondary Phone", value: secondaryContact },
+                { field: "Present Address", value: presentAddress},
+                { field: "Permanent Address", value: permanentAddress },
+              ]}
+            />
           </div>
         </div>
         <div className="flex flex-col gap-6 md:flex-row">
           <div className="md:w-3/5">
-          <ProfileDetails
-            header="Personal Information"
-            details={[
-              { field: "Employee Name", value: personalInfo.employeeName },
-              { field: "Birthday", value: personalInfo.birthday },
-              { field: "Gender", value: personalInfo.gender },
-              { field: "Nationality", value: personalInfo.nationality },
-              { field: "Marital Status", value: personalInfo.maritalStatus },
-            ]}
-          />
+            <ProfileDetails
+              header="Personal Information"
+              details={[
+                { field: "Employee Name", value: fullName},
+                { field: "Birthday", value: birthday },
+                { field: "Gender", value: gender },
+                { field: "Nationality", value: nationality },
+                { field: "Marital Status", value: civilStatus },
+              ]}
+            />
           </div>
           <div className="md:w-2/5">
-          <ProfileDetails
-            header="Government Numbers"
-            details={[
-              { field: "SSS", value: governmentNumbers.sss },
-              { field: "BIR TIN", value: governmentNumbers.birTin },
-              { field: "GSIS", value: governmentNumbers.gsis },
-              { field: "Pag-IBIG", value: governmentNumbers.pagibig },
-              { field: "PhilHealth", value: governmentNumbers.philhealth },
-            ]}
-          />
+            <ProfileDetails
+              header="Government Numbers"
+              details={[
+                { field: "SSS", value: sss },
+                { field: "BIR TIN", value: birTin },
+                { field: "GSIS", value: gsis },
+                { field: "Pag-IBIG", value: pagIbig },
+                { field: "PhilHealth", value: philHealth },
+              ]}
+            />
           </div>
         </div>
-        <div className="flex flex-col gap-6 md:flex-row">  
-          <div className="flex flex-col gap-6 md:w-3/5">
+        <div className="flex flex-col gap-6 md:flex-row">
+          <div className="md:w-3/5">
             <ProfileDetails
               header="Employment Details"
               details={[
-                { field: "Position", value: employmentDetails.plantillaPosition },
-                { field: "Salary Grade", value: employmentDetails.salaryGrade },
-                { field: "Employee Status",value: employmentDetails.employeeStatus,},
-                { field: "Civil Service Eligibility", value: employmentDetails.civilServiceEligibility,},
-                { field: "Daily Rate", value: employmentDetails.dailyRate },
-                { field: "Supervisor", value: employmentDetails.supervisor },
-              ]}
-            />
-            <ProfileDetails
-              header="Employee Role"
-              details={[
-                { field: "Department", value: employmentRole.department },
-                { field: "Category", value: employmentRole.category },
-                { value: employmentRole.adminFunction },
+                { field: "Position", value: designation },
+                { field: "Daily Rate", value: dailyRate },
+                { field: "Civil Service Eligibility", value: civilEligibility },
               ]}
             />
           </div>
           <div className="md:w-2/5">
-          <ProfileDetails
+            <ProfileDetails
               header="Educational Attainment"
               details={[
-                { field: "Civil Service Eligibility", value: employmentDetails.civilServiceEligibility}
+                { field: schoolName },
+                { field: "Course Name", value: courseName },
+                { field: "School Time Period", value: schoolTimePeriod },
               ]}
             />
           </div>

@@ -1,4 +1,5 @@
 import { useModalContext } from "../context/ModalContext";
+import { Link } from "react-router-dom";
 
 import Table from "../../Shared/components/ui/layout/Table";
 import TableRow from "../../Shared/components/ui/layout/TableRow";
@@ -100,12 +101,13 @@ const Employee = () => {
                   {sortableTableData.map((item, index) => (
                     <TableRow key={index} colorIndex={index}>
                       <TableData defaultData={item.employee_number} />
-                      <TableData
-                        withImage={{
-                          imagePath: item.image_path,
-                          text: item.name,
-                        }}
-                      />
+                        <TableData
+                          withImage={{
+                            imagePath: item.image_path,
+                            text: item.name,
+                            employeeNumberPCC: item.employee_number
+                          }}
+                        />
                       <TableData defaultData={item.email} />
                       <TableData defaultData={item.plantilla} />
                       <TableData defaultData={item.department} />
