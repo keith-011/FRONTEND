@@ -171,7 +171,7 @@ export interface UserProfile {
   philhealth: string;
   plantilla: string;
   designation: string;
-  salary_grade: number;
+  salary_grade: string;
   category: string;
   admin_function: boolean;
   status: string;
