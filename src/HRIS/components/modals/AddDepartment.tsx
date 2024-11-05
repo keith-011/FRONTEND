@@ -6,30 +6,32 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import {
   AddDepartmentSchema,
   AddDepartmentType,
-} from "../../schema/HRISAddDepartment";
+} from "../../schema/AddDepartment";
 
 import {
-  DepartmentNames,
+  ExistingDepartmentNames,
   SelectIdDescription,
   modalFormId,
-} from "../../../utils/Globals";
+} from "../../../utils/Types";
 
 import FormInput from "../../../Shared/components/ui/layout/FormInput";
 import CustomSelect from "../../../Shared/components/ui/dropdown/CustomSelect";
 import { ToastHandleAxiosCatch } from "../../../utils/ToastFunctions";
-import { useModalContext } from "../../context/HRISContext";
+import { useModalContext } from "../../context/ModalContext";
 import { toast } from "react-toastify";
 
 const AddDepartment = () => {
   const [nonHeadList, setNonHeadList] = useState<SelectIdDescription[]>([]);
-  const [departmentNames, setDepartmentNames] = useState<DepartmentNames>([]);
+  const [departmentNames, setDepartmentNames] = useState<
+    ExistingDepartmentNames[]
+  >([]);
   const [isLoading, setLoading] = useState<boolean>(true);
   const [isError, setError] = useState<boolean>(false);
   const [refresh, setRefresh] = useState<boolean>(false);
 
   const schema = AddDepartmentSchema(departmentNames);
 
-  const { closeModal, refreshParentPage, isModalOpen } = useModalContext();
+  const { closeModal, isModalOpen } = useModalContext();
 
   const {
     register,
@@ -39,6 +41,10 @@ const AddDepartment = () => {
   } = useForm<AddDepartmentType>({
     mode: "onChange",
     resolver: zodResolver(schema),
+    defaultValues: {
+      department: "",
+      department_head: "",
+    },
   });
 
   const onFormSubmit = handleSubmit(async (data) => {
@@ -48,8 +54,7 @@ const AddDepartment = () => {
     try {
       const toPost = await axios.post("/v1/forms/insert/department", data);
       toast.success(toPost.data.message);
-      refreshParentPage();
-      closeModal();
+      closeModal(true);
       reset();
       setRefresh(!refresh);
     } catch (error) {

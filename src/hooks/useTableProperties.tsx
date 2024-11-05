@@ -1,5 +1,5 @@
 import { useState, useMemo, useEffect } from "react";
-import { maxTableRecord } from "../utils/Globals";
+import { maxTableRecord } from "../utils/Types";
 
 type SortConfig<T> = {
   key: keyof T;

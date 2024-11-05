@@ -1,4 +1,4 @@
-import { useModalContext } from "../context/HRISContext";
+import { useModalContext } from "../context/ModalContext";
 
 import Table from "../../Shared/components/ui/layout/Table";
 import TableRow from "../../Shared/components/ui/layout/TableRow";
@@ -13,9 +13,10 @@ import useTableProperties from "../../hooks/useTableProperties";
 
 import AddEmployee from "../components/modals/AddEmployee";
 import { useFetchData } from "../../hooks/useFetchData";
-import { EmployeeTable } from "../../utils/Globals";
+import { EmployeeTable } from "../../utils/Types";
 import TableHead from "../components/ui/table/TableHead";
 import TableBody from "../components/ui/table/TableBody";
+import TableContainer from "../../Shared/components/ui/layout/TableContainer";
 
 const Employee = () => {
   const breadcrumbs = [
@@ -29,15 +30,15 @@ const Employee = () => {
     { id: "email", text: "Email", width: "w-[10%]" },
     { id: "plantilla", text: "Designation (Plantilla)", width: "w-[20%]" },
     { id: "department", text: "Department", width: "w-[20%]" },
-    { id: "division", text: "Designation", width: "w-[20%]" },
+    { id: "designation", text: "Designation", width: "w-[20%]" },
     { id: "action", text: "Action", width: "w-[5%]" },
   ];
 
-  const { openModal, refresh } = useModalContext();
+  const { openModal, refreshParent } = useModalContext();
 
   const { tableData, isError, isLoading } = useFetchData<EmployeeTable>(
     "/v1/table/employees",
-    refresh,
+    refreshParent,
   );
 
   const {
@@ -78,42 +79,43 @@ const Employee = () => {
         <>
           <div className="flex flex-col gap-3">
             <TableRecordPerPage onChange={changePagination} />
-
-            <Table>
-              <TableHead>
-                <TableRow colorIndex={1}>
-                  {tableHeader.map((item) => (
-                    <TableHeader
-                      key={item.id}
-                      tableHeader={{
-                        id: item.id,
-                        headerName: item.text,
-                        width: item.width,
-                      }}
-                      onColumnClick={sortColumn}
-                    />
-                  ))}
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {sortableTableData.map((item, index) => (
-                  <TableRow key={index} colorIndex={index}>
-                    <TableData defaultData={item.employee_number} />
-                    <TableData
-                      withImage={{
-                        imagePath: item.image_path,
-                        text: item.name,
-                      }}
-                    />
-                    <TableData defaultData={item.email} />
-                    <TableData defaultData={item.plantilla} />
-                    <TableData defaultData={item.department} />
-                    <TableData defaultData={item.division} />
-                    <TableData isAction={true} />
+            <TableContainer>
+              <Table>
+                <TableHead>
+                  <TableRow colorIndex={1}>
+                    {tableHeader.map((item) => (
+                      <TableHeader
+                        key={item.id}
+                        tableHeader={{
+                          id: item.id,
+                          headerName: item.text,
+                          width: item.width,
+                        }}
+                        onColumnClick={sortColumn}
+                      />
+                    ))}
                   </TableRow>
-                ))}
-              </TableBody>
-            </Table>
+                </TableHead>
+                <TableBody>
+                  {sortableTableData.map((item, index) => (
+                    <TableRow key={index} colorIndex={index}>
+                      <TableData defaultData={item.employee_number} />
+                      <TableData
+                        withImage={{
+                          imagePath: item.image_path,
+                          text: item.name,
+                        }}
+                      />
+                      <TableData defaultData={item.email} />
+                      <TableData defaultData={item.plantilla} />
+                      <TableData defaultData={item.department} />
+                      <TableData defaultData={item.designation} />
+                      <TableData isAction={true} />
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
 
             <TablePagination
               tableData={tableData}

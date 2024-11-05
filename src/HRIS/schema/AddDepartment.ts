@@ -1,7 +1,9 @@
 import { z, ZodIssueCode } from "zod";
-import { DepartmentNames } from "../../utils/Globals";
+import { ExistingDepartmentNames } from "../../utils/Types";
 
-export const AddDepartmentSchema = (departmentNames: DepartmentNames) => {
+export const AddDepartmentSchema = (
+  departmentNames: ExistingDepartmentNames[],
+) => {
   return z.object({
     department: z
       .string()

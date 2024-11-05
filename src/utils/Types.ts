@@ -1,5 +1,9 @@
 export type ColumnHeader = { id: string; headerName: string; width: string };
 
+export const modalFormId = "modalForm";
+
+export const maxTableRecord = [10, 25, 50, 100];
+
 export const MimeFileType = {
   // File Types
   PDF: "application/pdf",
@@ -76,38 +80,23 @@ export interface AddEmployeeForm {
   medical_analysis: FileList;
 }
 
-export type DepartmentNames = { department: string }[];
-
-export type EmployeeNumbers = { employee_number: string };
-
-export type PrimaryContacts = { primary_contact: string };
-
-export type Email = { email: string };
-
 export type EmployeeTable = {
   employee_number: string;
   name: string;
   email: string;
   plantilla: string;
   department: string;
-  division: string;
+  designation: string;
   image_path: string;
 };
 
-export type DivisionTable = {
-  id: string;
-  department_id: string;
-  division_head: string;
-  division: string;
-};
+export type ExistingDepartmentNames = { department: string };
 
-export type DepartmentTable = {
+export type DepartmentAndHeads = {
   id: string;
   department: string;
   department_head: string;
 };
-
-export type DivisionNames = { division: string }[];
 
 export type SelectIdDescription = {
   id: string;
@@ -122,10 +111,6 @@ export interface FormCategoryList extends SelectIdDescription {
   admin_compatible: boolean;
 }
 
-export const modalFormId = "modalForm";
-
-export const maxTableRecord = [10, 25, 50, 100];
-
 export interface AddEmployeeFetchData {
   existence: {
     email: { email: string }[];
@@ -135,13 +120,13 @@ export interface AddEmployeeFetchData {
     birTin: { bir_tin: string }[];
     gsis: { gsis: string }[];
     pagIbig: { pag_ibig: string }[];
-    philHealth: { philHealth: string }[];
+    philHealth: { philhealth: string }[];
     primaryContact: { primary_contact: string }[];
   };
 
   selectData: {
     plantilla: FormPlantillaList[];
-    department: DepartmentTable[];
+    department: DepartmentAndHeads[];
     category: FormCategoryList[];
     status: SelectIdDescription[];
   };

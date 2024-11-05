@@ -3,9 +3,9 @@ import { useFormContext } from "react-hook-form";
 
 import FormInput from "../../../../../Shared/components/ui/layout/FormInput";
 import FormCategory from "../../FormCategory";
-import { NewSchemaAddEmployeeType } from "../../../../schema/HRISAddEmployee";
+import { NewSchemaAddEmployeeType } from "../../../../schema/AddEmployee";
 import CustomSelect from "../../../../../Shared/components/ui/dropdown/CustomSelect";
-import { SelectIdDescription } from "../../../../../utils/Globals";
+import { SelectIdDescription } from "../../../../../utils/Types";
 
 interface Props {
   activeCategory: number | null;

@@ -1,7 +1,7 @@
 import DownloadIcon from "@mui/icons-material/Download";
 import { useRef, useState } from "react";
 import { useFormContext } from "react-hook-form";
-import { AddEmployeeForm } from "../../../../utils/Globals";
+import { AddEmployeeForm } from "../../../../utils/Types";
 
 // For modal forms only
 

@@ -1,4 +1,4 @@
-import { ColumnHeader } from "../../../../utils/Globals";
+import { ColumnHeader } from "../../../../utils/Types";
 
 import SwapVertIcon from "@mui/icons-material/SwapVert";
 

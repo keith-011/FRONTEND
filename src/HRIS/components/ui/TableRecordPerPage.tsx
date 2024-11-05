@@ -1,4 +1,4 @@
-import { maxTableRecord } from "../../../utils/Globals";
+import { maxTableRecord } from "../../../utils/Types";
 
 interface Props {
   onChange: (value: React.ChangeEvent<HTMLSelectElement>) => void;

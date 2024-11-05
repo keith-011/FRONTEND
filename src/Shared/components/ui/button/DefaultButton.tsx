@@ -5,7 +5,7 @@ interface Props {
   text: string;
   Icon?: SvgIconComponent;
   className?: string;
-  handleClick: () => void;
+  handleClick?: () => void;
   formId?: string;
   type?: "button" | "submit";
 }

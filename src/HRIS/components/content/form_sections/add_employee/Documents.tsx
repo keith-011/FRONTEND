@@ -6,7 +6,7 @@ import { AddEmployeeType } from "../../../../schema/HRISSchema";
 import FormCategory from "../../FormCategory";
 import FormInput from "../../../../../Shared/components/ui/layout/FormInput";
 import UploadButton from "../../../../../Shared/components/ui/button/UploadButton";
-import { EducationLevels, MimeFileType } from "../../../../../utils/Globals";
+import { EducationLevels, MimeFileType } from "../../../../../utils/Types";
 
 interface Props {
   activeCategory: number | null;
