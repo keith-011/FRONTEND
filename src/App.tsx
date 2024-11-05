@@ -33,7 +33,7 @@ const router = createBrowserRouter(
         <Route path="employees" element={<Employee />} />
         <Route path="departments" element={<Department />} />
 
-        <Route path="profile/:id" element={<Profile />} />
+        <Route path="profile/:employeeNumberPCC" element={<Profile />} />
       </Route>
       <Route path="testing" element={<TestingTable />} />
       <Route path="testingNext" element={<TestingVersion2 />} />
