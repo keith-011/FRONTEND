@@ -3,7 +3,8 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import PageHeader from "../components/content/PageHeader";
 import MainProfile from "../../Shared/components/ui/Cards/MainProfileCard";
-import ProfileDetails from "../../Shared/components/ui/Cards/RowCards";
+import RowCardStyle from "../../Shared/components/ui/Cards/RowCards";
+import ColumnCardStyle from "../../Shared/components/ui/Cards/ColumnCards";
 
 const Profile = () => {
   const breadcrumbs = [
@@ -63,31 +64,36 @@ const Profile = () => {
             joinedDate: "", 
           }}
           rightContent={[
-            { field: "Phone", value: primaryContact },
+            { field: "Phone:", value: primaryContact },
             { value: secondaryContact },
-            { field: "Email", value: email },
-            { field: "Birthday", value: birthday },
-            { field: "Address", value: presentAddress},
-            { field: "Gender", value: gender },
+            { field: "Email:", value: email },
+            { field: "Birthday:", value: birthday },
+            { field: "Address:", value: presentAddress},
+            { field: "Gender:", value: gender },
+            { field: "Reports to:", value: " " },
           ]}
           employmentStatus={"Active"}
         />
         <div className="flex flex-col gap-6 md:flex-row">
           <div className="md:w-2/5">
-            <ProfileDetails
+            <RowCardStyle
               header="Account Information"
               details={[
-                { field: "Email", value: email },
+                ///
+                { field: "Access Level", value: " " },
+                ///
+                { field: "Employement Status", value: " "},
                 { field: "Employee ID", value: employeeNumber },
+                { field: "Email", value: email }
               ]}
             />
           </div>
           <div className="md:w-3/5">
-            <ProfileDetails
+            <RowCardStyle
               header="Address & Contact Information"
               details={[
-                { field: "Primary Phone", value: primaryContact },
-                { field: "Secondary Phone", value: secondaryContact },
+                { field: "Contact 1", value: primaryContact },
+                { field: "Contact 2", value: secondaryContact },
                 { field: "Present Address", value: presentAddress},
                 { field: "Permanent Address", value: permanentAddress },
               ]}
@@ -96,23 +102,23 @@ const Profile = () => {
         </div>
         <div className="flex flex-col gap-6 md:flex-row">
           <div className="md:w-3/5">
-            <ProfileDetails
+            <RowCardStyle
               header="Personal Information"
               details={[
-                { field: "Employee Name", value: fullName},
+                { field: "Full Name", value: fullName},
                 { field: "Birthday", value: birthday },
                 { field: "Gender", value: gender },
                 { field: "Nationality", value: nationality },
-                { field: "Marital Status", value: civilStatus },
+                { field: "Civil Status", value: civilStatus },
               ]}
             />
           </div>
           <div className="md:w-2/5">
-            <ProfileDetails
+            <RowCardStyle
               header="Government Numbers"
               details={[
                 { field: "SSS", value: sss },
-                { field: "BIR TIN", value: birTin },
+                { field: "BIR/TIN", value: birTin },
                 { field: "GSIS", value: gsis },
                 { field: "Pag-IBIG", value: pagIbig },
                 { field: "PhilHealth", value: philHealth },
@@ -121,23 +127,38 @@ const Profile = () => {
           </div>
         </div>
         <div className="flex flex-col gap-6 md:flex-row">
-          <div className="md:w-3/5">
-            <ProfileDetails
+          <div className="flex flex-grow flex-col gap-6 ">
+          <div>
+            <RowCardStyle
               header="Employment Details"
               details={[
-                { field: "Position", value: designation },
-                { field: "Daily Rate", value: dailyRate },
+                { field: "Position (Position)", value: "" },
+                { field: "Salary Grade", value: ""},
+                { field: "Employee Status", value: ""},
                 { field: "Civil Service Eligibility", value: civilEligibility },
+                { field: "Daily Rate", value: dailyRate },
+                { field: "Supervisor", value: ""},
               ]}
             />
           </div>
+          <div>
+            <RowCardStyle
+              header="Employment Role"
+              details={[
+                { field: "Department", value: "" },
+                { value: "" }, ///Assigned as Head
+                { field: "Category", value: "" },
+                { value: "" }, ///With Admin function
+              ]}
+            />
+          </div>
+          </div>
           <div className="md:w-2/5">
-            <ProfileDetails
+            <ColumnCardStyle
               header="Educational Attainment"
               details={[
-                { field: schoolName },
-                { field: "Course Name", value: courseName },
-                { field: "School Time Period", value: schoolTimePeriod },
+                { field: schoolName, value1: courseName, value2: schoolTimePeriod },
+                { field: schoolName, value1: courseName, value2: schoolTimePeriod },
               ]}
             />
           </div>

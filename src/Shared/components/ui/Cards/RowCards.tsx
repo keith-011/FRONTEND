@@ -2,12 +2,12 @@ import React from 'react';
 import { SvgIconComponent } from '@mui/icons-material';
 import EditIcon from '@mui/icons-material/Edit';
 
-interface ProfileDetailsProps {
+interface RowCardStyleProps {
   header: string;
   details: Array<{ field?: string; value: string }>;
 }
 
-const ProfileDetails: React.FC<ProfileDetailsProps> = ({ header, details }) => {
+const RowCardStyle: React.FC<RowCardStyleProps> = ({ header, details }) => {
   return (
     <div className="flex flex-col bg-accent-50 shadow p-6 h-full">
       <div className="flex text-xl justify-between font-semibold text-accent-700 mb-4">
@@ -33,4 +33,4 @@ const ProfileDetails: React.FC<ProfileDetailsProps> = ({ header, details }) => {
   );
 };
 
-export default ProfileDetails;
+export default RowCardStyle;
