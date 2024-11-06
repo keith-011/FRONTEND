@@ -9,16 +9,16 @@ import { Slide, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 
-import DashboardLayout from "./HRIS/layouts/DashboardLayout";
+import DashboardLayout from "./layouts/DashboardLayout";
 
-import Login from "./HRIS/pages/Login";
-import Forgot from "./HRIS/pages/Forgot";
-import Dashboard from "./HRIS/pages/Dashboard";
-import Employee from "./HRIS/pages/Employee";
-import Department from "./HRIS/pages/Department";
-import Profile from "./HRIS/pages/Profile";
-import TestingTable from "./HRIS/pages/TestingTable";
-import TestingVersion2 from "./HRIS/pages/TestingVersion2";
+import Login from "./pages/Login";
+import Forgot from "./pages/Forgot";
+import Dashboard from "./pages/Dashboard";
+import Employee from "./pages/Employee";
+import Department from "./pages/Department";
+import Profile from "./pages/Profile";
+import TestingTable from "./pages/TestingTable";
+import TestingVersion2 from "./pages/TestingVersion2";
 
 axios.defaults.baseURL = "http://localhost:3000";
 
