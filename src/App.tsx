@@ -16,9 +16,10 @@ import Forgot from "./pages/Forgot";
 import Dashboard from "./pages/Dashboard";
 import Employee from "./pages/Employee";
 import Department from "./pages/Department";
-import Profile from "./pages/Profile";
+import ProfileLayout from "./layouts/ProfileLayout";
 import TestingTable from "./pages/TestingTable";
 import TestingVersion2 from "./pages/TestingVersion2";
+import Profile from "./pages/Profile";
 
 axios.defaults.baseURL = "http://localhost:3000";
 
@@ -33,7 +34,11 @@ const router = createBrowserRouter(
         <Route path="employees" element={<Employee />} />
         <Route path="departments" element={<Department />} />
 
-        <Route path="profile/:employeeNumberPCC" element={<Profile />} />
+        <Route path="profile/:employeeNumberPCC" element={<ProfileLayout />}>
+          <Route path="" element={<Profile />} />
+          <Route path="documents" element={<TestingTable />} />
+          <Route path="dashboard" element={<TestingTable />} />
+        </Route>
       </Route>
       <Route path="testing" element={<TestingTable />} />
       <Route path="testingNext" element={<TestingVersion2 />} />

@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import SidebarButton from "../../components/ui/button/SidebarButton";
 import SidebarSeparator from "../../components/ui/SidebarSeparator";
-import SidebarDropdown from "../../components/ui/button/SidebarDropdown";
+import SidebarDropdown from "../ui/dropdown/SidebarDropdown";
 
 import DashboardOutlinedIcon from "@mui/icons-material/DashboardOutlined";
 import BadgeOutlinedIcon from "@mui/icons-material/BadgeOutlined";

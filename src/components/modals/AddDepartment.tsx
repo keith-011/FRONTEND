@@ -91,10 +91,7 @@ const AddDepartment = () => {
 
   return (
     <>
-      {isLoading && <p className="ml-6 mt-8">Loading...</p>}
-      {!isLoading && isError && (
-        <p className="ml-6 mt-8">Error connecting to the server.</p>
-      )}
+      {isError ? <p>An error ocurred.</p> : isLoading && <p>Loading...</p>}
       {!isLoading && !isError && (
         <>
           <form

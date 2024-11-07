@@ -77,8 +77,7 @@ const Department = () => {
         breadcrumbs={breadcrumbs}
       />
 
-      {isLoading && <p>Loading...</p>}
-      {!isLoading && isError && <p>An error ocurred.</p>}
+      {isError ? <p>An error ocurred.</p> : isLoading && <p>Loading...</p>}
       {!isLoading && !isError && (
         <>
           <div className="flex flex-col gap-3">

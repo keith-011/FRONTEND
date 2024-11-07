@@ -74,8 +74,7 @@ const Employee = () => {
         }}
       />
 
-      {isLoading && <p>Loading...</p>}
-      {!isLoading && isError && <p>An error occurred.</p>}
+      {isError ? <p>An error ocurred.</p> : isLoading && <p>Loading...</p>}
       {!isLoading && !isError && (
         <>
           <div className="flex flex-col gap-3">

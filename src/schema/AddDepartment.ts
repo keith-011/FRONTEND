@@ -1,5 +1,5 @@
 import { z, ZodIssueCode } from "zod";
-import { ExistingDepartmentNames } from "../../utils/Types";
+import { ExistingDepartmentNames } from "../utils/Types";
 
 export const AddDepartmentSchema = (
   departmentNames: ExistingDepartmentNames[],
