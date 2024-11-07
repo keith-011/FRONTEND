@@ -94,39 +94,18 @@ const MainProfileCard: React.FC<Props> = ({
           </ul>
         </div>
         <ul className="flex border-b-2 border-accent-300 text-[15px] text-accent-600">
-          {/* <li>
-            <button className="-mb-[2px] border-b-2 border-azure-200 px-4 py-2 hover:bg-accent-100">
-              Profile
-            </button>
-          </li> */}
-          {/* <li className="px-4 py-2">
-            <NavLink className="">Profile</NavLink>
-          </li> */}
           {navButtons.map((item, index) => (
-            <>
-              <li key={index} className="flex">
-                <NavLink
-                  to={item.link}
-                  className={({ isActive }) =>
-                    `px-4 py-2 ${isActive ? "-mb-[2px] border-b-2 border-forest-600 font-semibold" : "hover:bg-accent-100"}`
-                  }
-                >
-                  {item.text}
-                </NavLink>
-              </li>
-            </>
+            <li key={index} className="flex">
+              <NavLink
+                to={item.link}
+                className={({ isActive }) =>
+                  `px-4 py-2 ${isActive ? "-mb-[2px] border-b-2 border-forest-600 font-semibold" : "hover:bg-accent-100"}`
+                }
+              >
+                {item.text}
+              </NavLink>
+            </li>
           ))}
-          {/* <li>
-            <button className="-mb-[2px] border-b-2 border-azure-200 px-4 py-2 hover:bg-accent-100">
-              Profile
-            </button>
-          </li>
-          <li>
-            <button className="px-4 py-2">Documents</button>
-          </li>
-          <li>
-            <button className="px-4 py-2">Employment History</button>
-          </li> */}
         </ul>
       </div>
 

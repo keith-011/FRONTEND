@@ -6,10 +6,17 @@ import { twMerge } from "tailwind-merge";
 interface Props {
   header: string;
   details: { field: string; value: string }[];
+  onEditClicked: () => void;
+
   className: string;
 }
 
-const ProfileCards: React.FC<Props> = ({ header, details, className }) => {
+const ProfileCards: React.FC<Props> = ({
+  header,
+  details,
+  className,
+  onEditClicked,
+}) => {
   return (
     <>
       <div
@@ -20,7 +27,7 @@ const ProfileCards: React.FC<Props> = ({ header, details, className }) => {
       >
         <div className="flex justify-between text-xl font-medium text-accent-700">
           {header}
-          <button className="flex items-center">
+          <button className="flex items-center" onClick={onEditClicked}>
             <EditIcon className="rounded-full bg-accent-200 p-0.5 text-accent-100" />
           </button>
         </div>

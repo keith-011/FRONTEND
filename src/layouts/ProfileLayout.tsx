@@ -2,7 +2,7 @@ import { Outlet, useLocation, useParams } from "react-router-dom";
 import PageHeader from "../components/content/PageHeader";
 import MainProfileCard from "../components/ui/cards/MainProfileCard";
 import ProfileCards from "../components/ui/cards/ProfileCards";
-import ColumnCardStyle from "../components/ui/cards/ColumnCards";
+import EducationCard from "../components/ui/cards/EducationCard";
 // NEEDS RESOLVE
 import { wordedDate } from "../utils/Functions";
 import { useModalContext } from "../context/ModalContext";
@@ -34,25 +34,30 @@ const ProfileLayout = () => {
       {!isLoading && !isError && (
         <>
           <PageHeader header="Profile" breadcrumbs={breadcrumbs} />
-          {/* <div className="flex flex-col gap-6"> */}
           <MainProfileCard
             leftContent={{
-              profileImage: profileData.image_path,
-              employeeName: profileData.fullname,
-              department: profileData.department,
-              designation: profileData.designation,
-              employeeNumberPcc: profileData.employee_number_pcc,
-              joinDate: wordedDate(profileData.created_at),
+              profileImage: profileData.profile.image_path,
+              employeeName: profileData.profile.fullname,
+              department: profileData.profile.department,
+              designation: profileData.profile.designation,
+              employeeNumberPcc: profileData.profile.employee_number_pcc,
+              joinDate: wordedDate(profileData.profile.created_at),
             }}
             rightContent={[
-              { fieldName: "Phone", value: profileData.primary_contact },
-              { fieldName: "Email", value: profileData.email },
+              {
+                fieldName: "Phone",
+                value: profileData.profile.primary_contact,
+              },
+              { fieldName: "Email", value: profileData.profile.email },
               {
                 fieldName: "Birthday",
-                value: wordedDate(profileData.birthday),
+                value: wordedDate(profileData.profile.birthday),
               },
-              { fieldName: "Address", value: profileData.present_address },
-              { fieldName: "Gender", value: profileData.gender },
+              {
+                fieldName: "Address",
+                value: profileData.profile.present_address,
+              },
+              { fieldName: "Gender", value: profileData.profile.gender },
               { fieldName: "Reports to", value: "" },
             ]}
             navButtons={[

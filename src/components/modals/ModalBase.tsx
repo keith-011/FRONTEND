@@ -15,13 +15,13 @@ const ModalBase = () => {
   return (
     <>
       <div
-        className={`fixed inset-0 z-40 bg-black bg-opacity-50 ${!isModalOpen && "hidden"}`}
+        className={`fixed inset-0 z-40 bg-black bg-opacity-50 ${!isModalOpen ? "hidden" : ""}`}
         onClick={() => {
           closeModal(false);
         }}
       />
       <div
-        className={`fixed right-0 top-0 z-50 flex w-full max-w-[700px] lg:w-2/5 ${!isModalOpen && "translate-x-full"} h-screen flex-col justify-between bg-accent-100 transition-transform duration-500 max-sm:w-full`}
+        className={`fixed right-0 top-0 z-50 flex w-full max-w-[700px] lg:w-2/5 ${!isModalOpen ? "translate-x-full" : ""} h-screen flex-col justify-between bg-accent-100 transition-transform duration-500 max-sm:w-full`}
         onTransitionEnd={(event: React.TransitionEvent<HTMLDivElement>) => {
           if (event.target === event.currentTarget) {
             isModalFormSubmitted && !isModalOpen && clearModalContent();
