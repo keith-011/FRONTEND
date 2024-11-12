@@ -1,5 +1,3 @@
-import { ColumnHeader } from "../utils/Types";
-
 import { useModalContext } from "../context/ModalContext";
 
 import useTableProperties from "../hooks/useTableProperties";
@@ -23,6 +21,7 @@ interface DepartmentTableData {
   head: string;
   image_path?: string;
   employee_count: number;
+  employee_number_pcc: string;
 }
 
 const Department = () => {
@@ -31,12 +30,22 @@ const Department = () => {
     { text: "Departments", link: "/departments" },
   ];
 
-  const tableHeader: ColumnHeader[] = [
-    { id: "department", headerName: "Department", width: "w-[40%]" },
-    { id: "head", headerName: "Department Head", width: "w-[30%]" },
-    { id: "employee_count", headerName: "Employee Count", width: "w-[25%]" },
-    { id: "action", headerName: "Action", width: "w-[5%]" },
+  const tableHeader: {
+    id: keyof DepartmentTableData | "action";
+    text: string;
+  }[] = [
+    { id: "department", text: "Department" },
+    { id: "head", text: "Department Head" },
+    { id: "employee_count", text: "Employee Count" },
+    { id: "action", text: "Action" },
   ];
+
+  // const tableHeader: ColumnHeader[] = [
+  //   { id: "department", headerName: "Department", width: "w-[40%]" },
+  //   { id: "head", headerName: "Department Head", width: "w-[30%]" },
+  //   { id: "employee_count", headerName: "Employee Count", width: "w-[25%]" },
+  //   { id: "action", headerName: "Action", width: "w-[5%]" },
+  // ];
 
   const { openModal, refreshParent } = useModalContext();
 
@@ -91,8 +100,7 @@ const Department = () => {
                         key={item.id}
                         tableHeader={{
                           id: item.id,
-                          headerName: item.headerName,
-                          width: item.width,
+                          headerName: item.text,
                         }}
                         onColumnClick={sortColumn}
                       />
@@ -107,7 +115,7 @@ const Department = () => {
                         withImage={{
                           imagePath: item.image_path,
                           text: item.head,
-                          employeeNumberPCC: item.id,
+                          employeeNumberPCC: item.employee_number_pcc,
                         }}
                       />
                       <TableData defaultData={item.employee_count} />

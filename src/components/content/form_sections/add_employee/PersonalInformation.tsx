@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useFormContext } from "react-hook-form";
 
-import { SelectIdDescription } from "../../../../utils/Types";
 import { NewSchemaAddEmployeeType } from "../../../../schema/AddEmployee";
 
 import FormCategory from "../../FormCategory";
@@ -11,8 +10,8 @@ import CustomSelect from "../../../../components/ui/dropdown/CustomSelect";
 interface Props {
   activeCategory: number | null;
   handleCategoryClick: (id: number) => void;
-  civilStatusData: SelectIdDescription[];
-  genderData: SelectIdDescription[];
+  civilStatusData: { description: string }[];
+  genderData: { description: string }[];
 }
 
 const PersonalInformation: React.FC<Props> = ({
@@ -126,9 +125,9 @@ const PersonalInformation: React.FC<Props> = ({
           errorMessage={errors.gender?.message}
         >
           <CustomSelect
-            data={genderData}
-            typeOfData="IdAndDescription"
             register={register("gender")}
+            typeOfData="Enum"
+            data={genderData}
           />
         </FormInput>
         <FormInput
@@ -152,7 +151,7 @@ const PersonalInformation: React.FC<Props> = ({
         >
           <CustomSelect
             register={register("civilStatus")}
-            typeOfData="IdAndDescription"
+            typeOfData="Enum"
             data={civilStatusData}
           />
         </FormInput>

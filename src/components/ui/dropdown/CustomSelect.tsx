@@ -8,7 +8,7 @@ import {
 interface BaseProps {
   register: UseFormRegisterReturn;
   defaultNone?: boolean;
-  typeOfData: "IdAndDescription" | "DepartmentsCategorized";
+  typeOfData: "IdAndDescription" | "DepartmentsCategorized" | "Enum";
 }
 
 interface IdAndDescription extends BaseProps {
@@ -21,7 +21,12 @@ interface CategorizedDepartments extends BaseProps {
   data: DepartmentAndHeads[];
 }
 
-type FinalProps = IdAndDescription | CategorizedDepartments;
+interface EnumElement extends BaseProps {
+  typeOfData: "Enum";
+  data: { description: string }[];
+}
+
+type FinalProps = IdAndDescription | CategorizedDepartments | EnumElement;
 
 const CustomSelect: React.FC<FinalProps> = ({
   register,
@@ -31,7 +36,6 @@ const CustomSelect: React.FC<FinalProps> = ({
 }) => {
   return (
     <>
-      {/* TO DO */}
       <select
         {...register}
         className="text-ellipsis rounded border border-accent-200 bg-accent-50 px-3 py-4 outline-accent-200 focus:outline-accent-400"
@@ -52,6 +56,14 @@ const CustomSelect: React.FC<FinalProps> = ({
               {item.department_head == null
                 ? `${item.department} (No head)`
                 : item.department}
+            </option>
+          ))}
+
+        {typeOfData === "Enum" &&
+          data.length > 0 &&
+          data.map((item) => (
+            <option key={item.description} value={item.description}>
+              {item.description}
             </option>
           ))}
       </select>

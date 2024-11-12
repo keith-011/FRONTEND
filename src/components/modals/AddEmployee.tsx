@@ -5,12 +5,7 @@ import { toast } from "react-toastify";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 
-import {
-  AddEmployeeFetchData,
-  civilStatusData,
-  genderData,
-  modalFormId,
-} from "../../utils/Types";
+import { AddEmployeeFetchData, modalFormId } from "../../utils/Types";
 
 import {
   NewSchemaAddEmployee,
@@ -49,6 +44,8 @@ const AddEmployee: React.FC = () => {
       department: [],
       category: [],
       status: [],
+      gender: [],
+      civilStatus: [],
     },
   });
 
@@ -67,6 +64,8 @@ const AddEmployee: React.FC = () => {
     fetchData.existence.pagIbig,
     fetchData.existence.philHealth,
     fetchData.existence.primaryContact,
+    fetchData.selectData.gender,
+    fetchData.selectData.civilStatus,
   );
 
   const { closeModal } = useModalContext();
@@ -190,8 +189,8 @@ const AddEmployee: React.FC = () => {
               <PersonalInformation
                 activeCategory={activeCategory}
                 handleCategoryClick={handleCategoryClick}
-                genderData={genderData}
-                civilStatusData={civilStatusData}
+                genderData={fetchData.selectData.gender}
+                civilStatusData={fetchData.selectData.civilStatus}
               />
               <AddressContact
                 activeCategory={activeCategory}

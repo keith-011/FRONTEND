@@ -25,24 +25,14 @@ const ProfileLayout = () => {
 
   const profileData = tableData[0];
 
-  // const location = useLocation();
-  // console.log(location.pathname === `/profile/${employeeNumberPCC}/documents`);
-
   return (
     <>
+      <PageHeader header="Profile" breadcrumbs={breadcrumbs} />
       {isError ? <p>An error ocurred.</p> : isLoading && <p>Loading...</p>}
       {!isLoading && !isError && (
         <>
-          <PageHeader header="Profile" breadcrumbs={breadcrumbs} />
           <MainProfileCard
-            leftContent={{
-              profileImage: profileData.profile.image_path,
-              employeeName: profileData.profile.fullname,
-              department: profileData.profile.department,
-              designation: profileData.profile.designation,
-              employeeNumberPcc: profileData.profile.employee_number_pcc,
-              joinDate: wordedDate(profileData.profile.created_at),
-            }}
+            mainData={profileData.profile}
             rightContent={[
               {
                 fieldName: "Phone",
@@ -58,143 +48,21 @@ const ProfileLayout = () => {
                 value: profileData.profile.present_address,
               },
               { fieldName: "Gender", value: profileData.profile.gender },
-              { fieldName: "Reports to", value: "" },
             ]}
             navButtons={[
               { text: "Profile", link: "" },
-              { text: "Documents", link: "/documents" },
-              { text: "Employment History", link: "/history" },
+              { text: "Documents", link: "documents" },
+              { text: "Employment History", link: "history" },
             ]}
+            supervisor={
+              profileData.supervisor && {
+                name: profileData.supervisor.fullname,
+                image_path: profileData.supervisor.image_path,
+              }
+            }
             // employmentStatus={"Active"}
           />
           <Outlet context={profileData} />
-          <br />
-          {/* <div className="flex flex-col gap-6 md:flex-row">
-            <div className="md:w-2/5">
-              <ProfileCards
-                header="Account Information"
-                details={[
-                  { field: "Access Level", value: "" },
-                  { field: "Employement Status", value: "" },
-                  {
-                    field: "Employee ID",
-                    value: profileData.employee_number_pcc,
-                  },
-                  { field: "Email", value: profileData.email },
-                ]}
-              />
-            </div>
-            <div className="md:w-3/5">
-              <ProfileCards
-                header="Address & Contact Information"
-                details={[
-                  { field: "Contact 1", value: profileData.primary_contact },
-                  {
-                    field: "Contact 2",
-                    value: profileData.secondary_contact,
-                  },
-                  {
-                    field: "Present Address",
-                    value: profileData.present_address,
-                  },
-                  {
-                    field: "Permanent Address",
-                    value: profileData.permanent_address,
-                  },
-                ]}
-              />
-            </div>
-          </div> */}
-          {/* <div className="flex flex-col gap-6 md:flex-row">
-            <div className="md:w-3/5">
-              <ProfileCards
-                header="Personal Information"
-                details={[
-                  { field: "Full Name", value: profileData.fullname },
-                  {
-                    field: "Birthday",
-                    value: wordedDate(profileData.birthday),
-                  },
-                  { field: "Gender", value: profileData.gender },
-                  { field: "Nationality", value: profileData.nationality },
-                  { field: "Civil Status", value: profileData.civil_status },
-                ]}
-              />
-            </div>
-            <div className="md:w-2/5">
-              <ProfileCards
-                header="Government Numbers"
-                details={[
-                  { field: "SSS", value: profileData.sss },
-                  { field: "BIR/TIN", value: profileData.bir_tin },
-                  { field: "GSIS", value: profileData.gsis },
-                  { field: "Pag-IBIG", value: profileData.pag_ibig },
-                  { field: "PhilHealth", value: profileData.philhealth },
-                ]}
-              />
-            </div>
-          </div> */}
-          {/* <div className="flex flex-col gap-6 md:flex-row">
-            <div className="flex flex-grow flex-col gap-6">
-              <div>
-                <ProfileCards
-                  header="Employment Details"
-                  details={[
-                    {
-                      field: "Plantilla Position",
-                      value: profileData.plantilla,
-                    },
-                    {
-                      field: "Salary Grade",
-                      value: profileData.salary_grade,
-                    },
-                    { field: "Employee Status", value: profileData.status },
-                    {
-                      field: "Civil Service Eligibility",
-                      value: profileData.civil_eligibility,
-                    },
-                    { field: "Daily Rate", value: profileData.daily_rate },
-                    { field: "Supervisor", value: "" },
-                  ]}
-                />
-              </div>
-              <div>
-                <ProfileCards
-                  header="Employment Role"
-                  details={[
-                    { field: "Department", value: profileData.department },
-                    { value: profileData.department_head }, ///Assigned as Head
-                    { field: "Category", value: profileData.category },
-                    {
-                      value:
-                        profileData.category != "Non-Teaching"
-                          ? profileData.admin_function
-                            ? "With Admin Function"
-                            : "No Admin Function"
-                          : "",
-                    }, ///With Admin function
-                  ]}
-                />
-              </div>
-            </div>
-            <div className="md:w-2/5">
-              <ColumnCardStyle
-                header="Educational Attainment"
-                details={[
-                  {
-                    field: "schoolName",
-                    value1: "courseName",
-                    value2: "schoolTimePeriod",
-                  },
-                  {
-                    field: "schoolName",
-                    value1: "courseName",
-                    value2: "schoolTimePeriod",
-                  },
-                ]}
-              />
-            </div>
-          </div> */}
         </>
       )}
     </>

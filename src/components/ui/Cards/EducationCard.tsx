@@ -24,15 +24,15 @@ const EducationCard: React.FC<Props> = ({
           className,
         )}
       >
-        <div className="flex justify-between text-xl font-medium text-accent-700">
+        <h3 className="flex justify-between text-xl font-medium text-accent-700">
           {header}
           <button className="flex items-center" onClick={onEditClicked}>
             <EditIcon className="rounded-full bg-accent-200 p-0.5 text-accent-100" />
           </button>
-        </div>
-        <div className="flex flex-col">
+        </h3>
+        <ul className="flex flex-col">
           {details.map((detail, index) => (
-            <div key={index} className="flex items-start gap-4">
+            <li key={index} className="flex items-start gap-4">
               <div className="flex h-full flex-col items-center">
                 <span className="h-3 w-3 rounded-full border border-accent-300 bg-accent-300"></span>
                 <span className="h-full border border-accent-300 bg-accent-300"></span>
@@ -59,9 +59,9 @@ const EducationCard: React.FC<Props> = ({
                   </span>
                 )}
               </div>
-            </div>
+            </li>
           ))}
-        </div>
+        </ul>
       </div>
     </>
   );

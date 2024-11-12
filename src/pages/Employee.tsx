@@ -1,5 +1,3 @@
-import { Link } from "react-router-dom";
-
 import { EmployeeTable } from "../utils/Types";
 
 import { useModalContext } from "../context/ModalContext";
@@ -25,15 +23,31 @@ const Employee = () => {
     { text: "Employees", link: "/employees" },
   ];
 
-  const tableHeader = [
-    { id: "employee_number", text: "Employee Number", width: "w-[10%]" },
-    { id: "name", text: "Name", width: "w-[15%]" },
-    { id: "email", text: "Email", width: "w-[10%]" },
-    { id: "plantilla", text: "Designation (Plantilla)", width: "w-[20%]" },
-    { id: "department", text: "Department", width: "w-[20%]" },
-    { id: "designation", text: "Designation", width: "w-[20%]" },
-    { id: "action", text: "Action", width: "w-[5%]" },
+  const tableHeader: {
+    id: keyof EmployeeTable | "action";
+    text: string;
+  }[] = [
+    { id: "employee_number_pcc", text: "Employee Number" },
+    { id: "name", text: "Name" },
+    { id: "email", text: "Email" },
+    { id: "department", text: "Department" },
+    { id: "designation", text: "Designation" },
+    { id: "category", text: "Category" },
+    { id: "status", text: "Status" },
+    { id: "service_status", text: "Service Status" },
+    { id: "joined_at", text: "Join Date" },
+    { id: "action", text: "Action" },
   ];
+
+  // const tableHeader = [
+  //   { id: "employee_number", text: "Employee Number", width: "w-[10%]" },
+  //   { id: "name", text: "Name", width: "w-[15%]" },
+  //   { id: "email", text: "Email", width: "w-[10%]" },
+  //   { id: "plantilla", text: "Designation (Plantilla)", width: "w-[20%]" },
+  //   { id: "department", text: "Department", width: "w-[20%]" },
+  //   { id: "designation", text: "Designation", width: "w-[20%]" },
+  //   { id: "action", text: "Action", width: "w-[5%]" },
+  // ];
 
   const { openModal, refreshParent } = useModalContext();
 
@@ -89,7 +103,6 @@ const Employee = () => {
                         tableHeader={{
                           id: item.id,
                           headerName: item.text,
-                          width: item.width,
                         }}
                         onColumnClick={sortColumn}
                       />
@@ -99,18 +112,25 @@ const Employee = () => {
                 <TableBody>
                   {sortableTableData.map((item, index) => (
                     <TableRow key={index} colorIndex={index}>
-                      <TableData defaultData={item.employee_number} />
+                      <TableData defaultData={item.employee_number_pcc} />
                       <TableData
                         withImage={{
                           imagePath: item.image_path,
                           text: item.name,
-                          employeeNumberPCC: item.employee_number,
+                          employeeNumberPCC: item.employee_number_pcc,
                         }}
                       />
                       <TableData defaultData={item.email} />
-                      <TableData defaultData={item.plantilla} />
                       <TableData defaultData={item.department} />
                       <TableData defaultData={item.designation} />
+                      <TableData defaultData={item.category} />
+                      <TableData defaultData={item.status} />
+                      <TableData defaultData={item.service_status} />
+                      <TableData
+                        defaultData={
+                          new Date(item.joined_at).toISOString().split("T")[0]
+                        }
+                      />
                       <TableData isAction={true} />
                     </TableRow>
                   ))}

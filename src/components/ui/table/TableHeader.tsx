@@ -1,9 +1,7 @@
-import { ColumnHeader } from "../../../../utils/Types";
-
 import SwapVertIcon from "@mui/icons-material/SwapVert";
 
 interface Props {
-  tableHeader: ColumnHeader;
+  tableHeader: { id: string; headerName: string };
   onColumnClick: (key: any) => void;
 }
 
@@ -16,7 +14,7 @@ const TableHeader: React.FC<Props> = ({
     <>
       <th
         // h-table-cell
-        className={`px-6 py-4 text-left font-medium ${!isActionColumn && "hover:cursor-pointer"} ${tableHeader.width}`}
+        className={`px-6 py-4 text-left font-medium ${!isActionColumn && "hover:cursor-pointer"}`}
         onClick={
           !isActionColumn
             ? () => {

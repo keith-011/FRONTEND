@@ -1,5 +1,3 @@
-export type ColumnHeader = { id: string; headerName: string; width: string };
-
 export const modalFormId = "modalForm";
 
 export const maxTableRecord = [10, 25, 50, 100];
@@ -81,13 +79,17 @@ export interface AddEmployeeForm {
 }
 
 export type EmployeeTable = {
-  employee_number: string;
+  employee_number_pcc: string;
   name: string;
   email: string;
-  plantilla: string;
   department: string;
   designation: string;
   image_path: string;
+  joined_at: Date;
+  status: string;
+  category: string;
+  service_status: string;
+  admin_function: boolean;
 };
 
 export type ExistingDepartmentNames = { department: string };
@@ -129,19 +131,21 @@ export interface AddEmployeeFetchData {
     department: DepartmentAndHeads[];
     category: FormCategoryList[];
     status: SelectIdDescription[];
+    gender: { description: string }[];
+    civilStatus: { description: string }[];
   };
 }
 
-export const civilStatusData: SelectIdDescription[] = [
-  { id: "Single", description: "Single" },
-  { id: "Married", description: "Married" },
-  { id: "Widowed", description: "Widowed" },
-];
+// export const civilStatusData: SelectIdDescription[] = [
+//   { id: "Single", description: "Single" },
+//   { id: "Married", description: "Married" },
+//   { id: "Widowed", description: "Widowed" },
+// ];
 
-export const genderData: SelectIdDescription[] = [
-  { id: "Male", description: "Male" },
-  { id: "Female", description: "Female" },
-];
+// export const genderData: SelectIdDescription[] = [
+//   { id: "Male", description: "Male" },
+//   { id: "Female", description: "Female" },
+// ];
 
 export const educationLevelData: SelectIdDescription[] = [
   { id: "Secondary", description: "Secondary" },
@@ -149,6 +153,9 @@ export const educationLevelData: SelectIdDescription[] = [
   { id: "College", description: "College" },
   { id: "Graduate Studies", description: "Graduate Studies" },
 ];
+
+export const serviceStatusData: string[] = ["Active", "Resigned"];
+
 export interface UserProfile {
   profile: {
     created_at: Date;
@@ -177,7 +184,7 @@ export interface UserProfile {
     admin_function: boolean;
     status: string;
     department: string;
-    department_head: string;
+    is_department_head: boolean;
     civil_eligibility: string;
     daily_rate: string;
   };
@@ -190,4 +197,8 @@ export interface UserProfile {
     year_end: number | null;
     is_studying: boolean;
   }[];
+  supervisor: {
+    fullname: string;
+    image_path: string;
+  } | null;
 }

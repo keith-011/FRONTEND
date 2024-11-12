@@ -17,20 +17,25 @@ const TableData: React.FC<Props> = ({ defaultData, isAction, withImage }) => {
     <>
       <td className={`px-6 py-4 ${isAction ? "text-center" : ""}`}>
         {withImage && (
-          <Link to={`/profile/${withImage.employeeNumberPCC}`} className="flex items-center gap-3">
+          <Link
+            to={`/profile/${withImage.employeeNumberPCC}`}
+            className="flex items-center gap-3"
+          >
             {withImage.text != null && (
               <>
                 <div className="max-h-8 min-h-8 min-w-8 max-w-8 shrink-0 overflow-hidden rounded-full">
-                    <img
-                      src={
-                        withImage.imagePath
-                          ? withImage.imagePath
-                          : "/src/assets/images/Avatar.png"
-                      }
-                      className="object-cover"
-                    />
+                  <img
+                    src={
+                      withImage.imagePath
+                        ? withImage.imagePath
+                        : "/src/assets/images/Avatar.png"
+                    }
+                    className="object-cover"
+                  />
                 </div>
-                <span>{withImage.text}</span>
+                <span className="font-medium text-forest-900">
+                  {withImage.text}
+                </span>
               </>
             )}
           </Link>

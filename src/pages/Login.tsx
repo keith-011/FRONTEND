@@ -28,7 +28,7 @@ const Login = () => {
 
   const onFormSubmit = handleSubmit(async (data) => {
     try {
-      const a = await axios.post("/v1/auth/login", data, {
+      const a = await axios.post("/v1/auth/loginsupabase", data, {
         withCredentials: true,
       });
       console.log(jwtDecode(a.data.accessToken));
@@ -56,16 +56,17 @@ const Login = () => {
               <div className="flex flex-col gap-1">
                 <LoginTextbox
                   type="text"
-                  className={`${errors.employeeNumber && "border-red-400 focus-within:border-red-400"}`}
                   register={register("employeeNumber")}
                 />
               </div>
               <div className="flex flex-col gap-1">
-                <LoginTextbox
-                  type="password"
-                  className={`${errors.password && "border-red-400 focus-within:border-red-400"}`}
-                  register={register("password")}
-                />
+                <LoginTextbox type="password" register={register("password")} />
+                {(errors.employeeNumber?.message ||
+                  errors.password?.message) && (
+                  <p className="text-sm text-red-400">
+                    {errors.employeeNumber?.message || errors.password?.message}
+                  </p>
+                )}
               </div>
 
               <NavLink

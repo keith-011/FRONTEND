@@ -24,7 +24,7 @@ const DefaultButton: React.FC<Props> = ({
         type={type}
         form={id}
         className={twMerge(
-          "flex w-full justify-center gap-1 rounded px-3 py-2 font-medium text-accent-50 transition-colors",
+          "flex grow justify-center gap-1 rounded px-3 py-2 font-medium text-accent-50 transition-colors",
           className,
         )}
         onClick={onClick}

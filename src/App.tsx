@@ -20,6 +20,8 @@ import ProfileLayout from "./layouts/ProfileLayout";
 import TestingTable from "./pages/TestingTable";
 import TestingVersion2 from "./pages/TestingVersion2";
 import Profile from "./pages/Profile";
+import ProfileDocuments from "./pages/ProfileDocuments";
+import ProfileHistory from "./pages/ProfileHistory";
 
 axios.defaults.baseURL = "http://localhost:3000";
 
@@ -36,8 +38,8 @@ const router = createBrowserRouter(
 
         <Route path="profile/:employeeNumberPCC" element={<ProfileLayout />}>
           <Route path="" element={<Profile />} />
-          <Route path="documents" element={<TestingTable />} />
-          <Route path="dashboard" element={<TestingTable />} />
+          <Route path="documents" element={<ProfileDocuments />} />
+          <Route path="history" element={<ProfileHistory />} />
         </Route>
       </Route>
       <Route path="testing" element={<TestingTable />} />

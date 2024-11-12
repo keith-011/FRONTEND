@@ -2,12 +2,7 @@ import { z, ZodIssueCode } from "zod";
 
 import { TextInput, SelectInputRequired } from "../utils/ZodFunctions";
 
-import {
-  AddEmployeeFetchData,
-  civilStatusData,
-  educationLevelData,
-  genderData,
-} from "../utils/Types";
+import { AddEmployeeFetchData, educationLevelData } from "../utils/Types";
 
 export const NewSchemaAddEmployee = (
   empNumberPcc: AddEmployeeFetchData["existence"]["employeeNumberPCC"],
@@ -19,6 +14,8 @@ export const NewSchemaAddEmployee = (
   pagibigList: AddEmployeeFetchData["existence"]["pagIbig"],
   philHealthList: AddEmployeeFetchData["existence"]["philHealth"],
   primaryContactList: AddEmployeeFetchData["existence"]["primaryContact"],
+  genderData: AddEmployeeFetchData["selectData"]["gender"],
+  civilStatusData: AddEmployeeFetchData["selectData"]["civilStatus"],
 ) => {
   return z
     .object({
@@ -88,7 +85,7 @@ export const NewSchemaAddEmployee = (
       gender: z
         .string()
         .refine(
-          (value) => genderData.some((item) => item.id === value),
+          (value) => genderData.some((item) => item.description === value),
           "Invalid input.",
         ),
 
@@ -99,7 +96,7 @@ export const NewSchemaAddEmployee = (
       civilStatus: z
         .string()
         .refine(
-          (value) => civilStatusData.some((item) => item.id === value),
+          (value) => civilStatusData.some((item) => item.description === value),
           "Invalid input.",
         ),
       nationality: TextInput(true, 1, 50).regex(
