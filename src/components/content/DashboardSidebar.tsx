@@ -58,6 +58,13 @@ const DashboardSidebar: React.FC<Props> = ({
               Icon={BadgeOutlinedIcon}
               text="All Employees"
             />
+
+            <SidebarButton
+              link="roles"
+              Icon={BadgeOutlinedIcon}
+              text="Roles & Permissions"
+            />
+
             <SidebarButton
               link="departments"
               Icon={GroupWorkOutlinedIcon}
