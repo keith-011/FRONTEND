@@ -1,6 +1,5 @@
 import React from "react";
 import SettingsIcon from "@mui/icons-material/Settings";
-import ProfileNavigationButton from "./ProfileNavigationButton";
 import { wordedDate } from "../../../utils/Functions";
 import { NavLink } from "react-router-dom";
 import { UserProfile } from "../../../utils/Types";
