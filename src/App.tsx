@@ -22,6 +22,7 @@ import TestingVersion2 from "./pages/TestingVersion2";
 import Profile from "./pages/Profile";
 import ProfileDocuments from "./pages/ProfileDocuments";
 import ProfileHistory from "./pages/ProfileHistory";
+import ProtectedRoute from "./layouts/ProtectedRoute";
 
 axios.defaults.baseURL = "http://localhost:3000";
 
@@ -30,16 +31,17 @@ const router = createBrowserRouter(
     <Route path="/">
       <Route index element={<Login />} />
       <Route path="forgot" element={<Forgot />} />
+      <Route element={<ProtectedRoute />}>
+        <Route element={<DashboardLayout />}>
+          <Route path="dashboard" element={<TestingTable />} />
+          <Route path="employees" element={<Employee />} />
+          <Route path="departments" element={<Department />} />
 
-      <Route element={<DashboardLayout />}>
-        <Route path="dashboard" element={<TestingTable />} />
-        <Route path="employees" element={<Employee />} />
-        <Route path="departments" element={<Department />} />
-
-        <Route path="profile/:employeeNumberPCC" element={<ProfileLayout />}>
-          <Route path="" element={<Profile />} />
-          <Route path="documents" element={<ProfileDocuments />} />
-          <Route path="history" element={<ProfileHistory />} />
+          <Route path="profile/:employeeNumberPCC" element={<ProfileLayout />}>
+            <Route path="" element={<Profile />} />
+            <Route path="documents" element={<ProfileDocuments />} />
+            <Route path="history" element={<ProfileHistory />} />
+          </Route>
         </Route>
       </Route>
       <Route path="testing" element={<TestingTable />} />

@@ -81,7 +81,7 @@ const EmploymentDetails: React.FC<Props> = ({
       (item) => item.id === watchDepartment,
     );
 
-    if (getDepartment?.department_head === null) {
+    if (getDepartment?.head_id === null) {
       setHeadCheckboxVisibility(true);
     } else {
       setHeadCheckboxVisibility(false);

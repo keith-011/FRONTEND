@@ -46,6 +46,7 @@ const AddEmployee: React.FC = () => {
       status: [],
       gender: [],
       civilStatus: [],
+      educationLevel: [],
     },
   });
 
@@ -207,6 +208,7 @@ const AddEmployee: React.FC = () => {
               <EducationalBackground
                 activeCategory={activeCategory}
                 handleCategoryClick={handleCategoryClick}
+                educationLevelData={fetchData.selectData.educationLevel}
               />
 
               <GovernmentNumbers

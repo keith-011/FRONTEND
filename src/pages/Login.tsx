@@ -28,10 +28,14 @@ const Login = () => {
 
   const onFormSubmit = handleSubmit(async (data) => {
     try {
-      const a = await axios.post("/v1/auth/loginsupabase", data, {
+      const accessToken = await axios.post("/v1/auth/login", data, {
         withCredentials: true,
       });
-      console.log(jwtDecode(a.data.accessToken));
+
+      localStorage.setItem("token", accessToken.data);
+
+      // setAccessToken(accessToken.data);
+      navigate("/dashboard", { replace: true });
     } catch (error) {
       ToastHandleAxiosCatch(error);
     }

@@ -97,7 +97,7 @@ export type ExistingDepartmentNames = { department: string };
 export type DepartmentAndHeads = {
   id: string;
   department: string;
-  department_head: string;
+  head_id: string;
 };
 
 export type SelectIdDescription = {
@@ -133,19 +133,9 @@ export interface AddEmployeeFetchData {
     status: SelectIdDescription[];
     gender: { description: string }[];
     civilStatus: { description: string }[];
+    educationLevel: { description: string }[];
   };
 }
-
-// export const civilStatusData: SelectIdDescription[] = [
-//   { id: "Single", description: "Single" },
-//   { id: "Married", description: "Married" },
-//   { id: "Widowed", description: "Widowed" },
-// ];
-
-// export const genderData: SelectIdDescription[] = [
-//   { id: "Male", description: "Male" },
-//   { id: "Female", description: "Female" },
-// ];
 
 export const educationLevelData: SelectIdDescription[] = [
   { id: "Secondary", description: "Secondary" },

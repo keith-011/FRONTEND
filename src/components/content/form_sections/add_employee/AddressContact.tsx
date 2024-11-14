@@ -64,7 +64,7 @@ const AddressContact: React.FC<Props> = ({
         >
           <input
             type="tel"
-            maxLength={25}
+            maxLength={11}
             placeholder="Contact Number"
             className="modal-input"
             {...register("primaryContact")}
@@ -77,7 +77,7 @@ const AddressContact: React.FC<Props> = ({
         >
           <input
             type="tel"
-            maxLength={25}
+            maxLength={11}
             placeholder="Contact Number"
             className="modal-input"
             {...register("secondaryContact")}

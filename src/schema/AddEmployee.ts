@@ -105,8 +105,8 @@ export const NewSchemaAddEmployee = (
       ),
 
       // Address & Contact
-      primaryContact: TextInput(true, 1, 25)
-        .regex(/^\d+$/, "Invalid input.")
+      primaryContact: TextInput(true, 1, 11)
+        .regex(/^09\d+$/, "Invalid mobile number.")
         .refine(
           (value) =>
             !primaryContactList.some(
@@ -115,14 +115,14 @@ export const NewSchemaAddEmployee = (
           "Contact number already exists.",
         ),
 
-      secondaryContact: TextInput(false, 0, 25)
+      secondaryContact: TextInput(false, 0, 11)
         .nullable()
         .transform((value) => {
           return value === "" ? null : value;
         })
         .refine(
-          (value) => value === null || /^\d+$/.test(value),
-          "Invalid input.",
+          (value) => value === null || /^09\d+$/.test(value),
+          "Invalid mobile number.",
         ),
       presentAddress: TextInput(true, 1, 175),
 

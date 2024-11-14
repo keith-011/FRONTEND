@@ -39,16 +39,6 @@ const Employee = () => {
     { id: "action", text: "Action" },
   ];
 
-  // const tableHeader = [
-  //   { id: "employee_number", text: "Employee Number", width: "w-[10%]" },
-  //   { id: "name", text: "Name", width: "w-[15%]" },
-  //   { id: "email", text: "Email", width: "w-[10%]" },
-  //   { id: "plantilla", text: "Designation (Plantilla)", width: "w-[20%]" },
-  //   { id: "department", text: "Department", width: "w-[20%]" },
-  //   { id: "designation", text: "Designation", width: "w-[20%]" },
-  //   { id: "action", text: "Action", width: "w-[5%]" },
-  // ];
-
   const { openModal, refreshParent } = useModalContext();
 
   const { tableData, isError, isLoading } = useFetchData<EmployeeTable>(

@@ -53,7 +53,7 @@ const CustomSelect: React.FC<FinalProps> = ({
           data.length > 0 &&
           data.map((item) => (
             <option key={item.id} value={item.id}>
-              {item.department_head == null
+              {item.head_id == null
                 ? `${item.department} (No head)`
                 : item.department}
             </option>

@@ -40,13 +40,6 @@ const Department = () => {
     { id: "action", text: "Action" },
   ];
 
-  // const tableHeader: ColumnHeader[] = [
-  //   { id: "department", headerName: "Department", width: "w-[40%]" },
-  //   { id: "head", headerName: "Department Head", width: "w-[30%]" },
-  //   { id: "employee_count", headerName: "Employee Count", width: "w-[25%]" },
-  //   { id: "action", headerName: "Action", width: "w-[5%]" },
-  // ];
-
   const { openModal, refreshParent } = useModalContext();
 
   const { tableData, isError, isLoading } = useFetchData<DepartmentTableData>(
