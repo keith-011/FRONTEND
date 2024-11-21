@@ -4,7 +4,7 @@ import { TextInput, SelectInputRequired } from "../utils/ZodFunctions";
 
 import { AddEmployeeFetchData, educationLevelData } from "../utils/Types";
 
-export const NewSchemaAddEmployee = (
+export const AddEmployeeSchema = (
   empNumberPcc: AddEmployeeFetchData["existence"]["employeeNumberPCC"],
   empNumberCityHall: AddEmployeeFetchData["existence"]["employeeNumberCH"],
   emailList: AddEmployeeFetchData["existence"]["email"],
@@ -333,5 +333,5 @@ export const NewSchemaAddEmployee = (
 };
 
 export type NewSchemaAddEmployeeType = z.infer<
-  ReturnType<typeof NewSchemaAddEmployee>
+  ReturnType<typeof AddEmployeeSchema>
 >;

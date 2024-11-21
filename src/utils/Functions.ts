@@ -1,5 +1,4 @@
 export const wordedDate = (stringDate: Date) => {
-  console.log("Date got: ", stringDate);
   const date = new Date(stringDate);
   const monthNames = [
     "January",

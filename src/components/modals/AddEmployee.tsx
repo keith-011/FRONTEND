@@ -8,7 +8,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { AddEmployeeFetchData, modalFormId } from "../../utils/Types";
 
 import {
-  NewSchemaAddEmployee,
+  AddEmployeeSchema,
   NewSchemaAddEmployeeType,
 } from "../../schema/AddEmployee";
 
@@ -55,7 +55,7 @@ const AddEmployee: React.FC = () => {
   const [isError, setError] = useState<boolean>(false);
   const [refresh, setRefresh] = useState<boolean>(false);
 
-  const schema = NewSchemaAddEmployee(
+  const schema = AddEmployeeSchema(
     fetchData.existence.employeeNumberPCC,
     fetchData.existence.employeeNumberCH,
     fetchData.existence.email,
