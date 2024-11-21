@@ -137,6 +137,30 @@ export interface AddEmployeeFetchData {
   };
 }
 
+export interface UpdateEmployeeFetchData {
+  existence: {
+    email: { email: string }[];
+    employeeNumberPCC: { employee_number_pcc: string }[];
+    employeeNumberCH: { employee_number_ch: string }[];
+    sss: { sss: string }[];
+    birTin: { bir_tin: string }[];
+    gsis: { gsis: string }[];
+    pagIbig: { pag_ibig: string }[];
+    philHealth: { philhealth: string }[];
+    primaryContact: { primary_contact: string }[];
+  };
+
+  selectData: {
+    plantilla: FormPlantillaList[];
+    department: DepartmentAndHeads[];
+    category: FormCategoryList[];
+    status: SelectIdDescription[];
+    gender: { description: string }[];
+    civilStatus: { description: string }[];
+    educationLevel: { description: string }[];
+  };
+}
+
 export const educationLevelData: SelectIdDescription[] = [
   { id: "Secondary", description: "Secondary" },
   { id: "Vocational", description: "Vocational" },
@@ -152,6 +176,10 @@ export interface UserProfile {
     employee_number_pcc: string;
     employee_number_ch: string;
     email: string;
+    first_name: string;
+    middle_name: string;
+    last_name: string;
+    suffix: string;
     fullname: string;
     birthday: Date;
     gender: string;

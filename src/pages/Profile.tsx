@@ -4,6 +4,12 @@ import ProfileCards from "../components/ui/cards/ProfileCards";
 import { wordedDate } from "../utils/Functions";
 import EducationCard from "../components/ui/cards/EducationCard";
 import { useModalContext } from "../context/ModalContext";
+import EditAccountInformation from "../components/modals/profile_sections/EditAccountInformation";
+import EditContactInformation from "../components/modals/profile_sections/EditContactInformation";
+import EditGovernmentNumber from "../components/modals/profile_sections/EditGovernmentNumbers";
+import EditPersonalInformation from "../components/modals/profile_sections/EditPersonalInformation";
+import EditEmploymentDetails from "../components/modals/profile_sections/EditEmploymentDetails";
+import EditEducationalAttainment from "../components/modals/profile_sections/EditEducationalAttainment";
 
 const Profile: React.FC = () => {
   const profileData = useOutletContext<UserProfile>();
@@ -33,9 +39,9 @@ const Profile: React.FC = () => {
             className="basis-2/5"
             onEditClicked={() => {
               openModal({
-                header: "Sample Header",
-                subheading: "Another sample",
-                content: <p></p>,
+                header: "Edit Account Information",
+                subheading: "Update your account details by entering the required information here.",
+                content: <EditAccountInformation/>,
               });
             }}
           />
@@ -62,9 +68,9 @@ const Profile: React.FC = () => {
             className="basis-3/5"
             onEditClicked={() => {
               openModal({
-                header: "Sample Header",
-                subheading: "Another sample",
-                content: <p></p>,
+                header: "Edit Address & Contact Information",
+                subheading: "Update your address and contact details by entering the required information here.",
+                content: <EditContactInformation/>,
               });
             }}
           />
@@ -89,9 +95,9 @@ const Profile: React.FC = () => {
             className="basis-3/5"
             onEditClicked={() => {
               openModal({
-                header: "Sample Header",
-                subheading: "Another sample",
-                content: <p></p>,
+                header: "Edit Personal Information",
+                subheading: "Update your personal details by entering the required information here.",
+                content: <EditPersonalInformation/>,
               });
             }}
           />
@@ -107,9 +113,9 @@ const Profile: React.FC = () => {
             className="basis-2/5"
             onEditClicked={() => {
               openModal({
-                header: "Sample Header",
-                subheading: "Another sample",
-                content: <p></p>,
+                header: "Edit Government Numbers",
+                subheading: "Update your government numbers by entering the required information here.",
+                content: <EditGovernmentNumber/>,
               });
             }}
           />
@@ -157,9 +163,9 @@ const Profile: React.FC = () => {
             className="basis-3/5"
             onEditClicked={() => {
               openModal({
-                header: "Sample Header",
-                subheading: "Another sample",
-                content: <p></p>,
+                header: "Edit Employment Details",
+                subheading: "Update your employment information by entering the required information here.",
+                content: <EditEmploymentDetails/>,
               });
             }}
           />
@@ -169,9 +175,9 @@ const Profile: React.FC = () => {
             className="basis-2/5"
             onEditClicked={() => {
               openModal({
-                header: "Sample Header",
-                subheading: "Another sample",
-                content: <p></p>,
+                header: "Edit Educational Attainment",
+                subheading: "Update your education details by entering the required information here.",
+                content: <EditEducationalAttainment/>,
               });
             }}
           />
