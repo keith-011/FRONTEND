@@ -55,13 +55,14 @@ const EditEmploymentDetails: React.FC = () => {
   const [isError, setError] = useState<boolean>(false);
   const [refresh, setRefresh] = useState<boolean>(false);
   const [payGrade, setPayGrade] = useState<string>("");
+  const [showHeadCheckbox, setHeadCheckboxVisibility] = useState<boolean>(false);
   const [departmentHead, setDepartmentHead] = useState<any>(null);
-  const plantillaData = fetchData.selectData.plantilla;
+  const [currentDepartmentId, setCurrentDepartmentId] = useState<string>("");
+  const plantillaData = fetchData.selectData.plantilla; 
   const statusData = fetchData.selectData.status;
   const departmentData = fetchData.selectData.department;
   const categoryData = fetchData.selectData.category;
   
-
   const {
     register,
     handleSubmit,
@@ -70,7 +71,7 @@ const EditEmploymentDetails: React.FC = () => {
     setValue,
     watch,
   } = useForm<EditEmploymentDetailsValidationType>({
-    resolver: zodResolver(EditEmploymentDetailsValidation()),
+    resolver: zodResolver(EditEmploymentDetailsValidation(departmentData, currentDepartmentId)),
     mode: "onChange",
   });
 
@@ -91,7 +92,6 @@ const EditEmploymentDetails: React.FC = () => {
     setValue("newStatus", selectedStatus?.id || "");
     setValue("newDepartment", selectedDepartment?.id || "");
     setValue("newCategory", selectedCategory?.id || "");
-    setValue("newIsDepartmentHead", profileData.profile.is_department_head);
     setValue("newDesignation", profileData.profile.designation);
     setValue("newWithAdminFunction", profileData.profile.admin_function);
     setValue("newCivilServiceEligibility",profileData.profile.civil_eligibility,);
@@ -100,13 +100,39 @@ const EditEmploymentDetails: React.FC = () => {
   }, [
     isModalOpen,
     profileData,
-    setValue,
     plantillaData,
     statusData,
     departmentData,
     categoryData,
   ]);
-
+  
+  useEffect(() => {
+    if (!isModalOpen || !profileData) {
+      return;
+    }
+    setCurrentDepartmentId(profileData.profile.department);
+    const getDepartment = departmentData.find(
+      (item) => item.id === watchDepartment,
+    );
+    console.log(getDepartment)
+    if (getDepartment) {
+      if (getDepartment.head_id === departmentHead) {
+        setHeadCheckboxVisibility(true);
+        setValue("newIsDepartmentHead", profileData.profile.is_department_head); 
+      } else if (getDepartment.head_id === null) {
+        setHeadCheckboxVisibility(true);
+        setValue("newIsDepartmentHead", false); 
+      } else {
+        setHeadCheckboxVisibility(false);
+      }
+    } else {
+      setHeadCheckboxVisibility(false);
+    }
+  }, [watchDepartment, departmentData, profileData]);
+  
+  console.log("currentDepartmentId: ", currentDepartmentId)
+  console.log("departmentHead: ", departmentHead)
+  console.log("departmentData: ", departmentData)
   useEffect(() => {
     const controller = new AbortController();
     const fetchData = async () => {
@@ -157,7 +183,21 @@ const EditEmploymentDetails: React.FC = () => {
     }
   });
   console.log(watchDepartment)
-  console.log(departmentHead)
+
+  const handleDepartmentHeadChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const isChecked = e.target.checked;
+ 
+    try {
+      await axios.patch(`/v1/update/change_department_head/${employeeNumberPCC}`, {
+        isDepartmentHead: isChecked,
+        departmentId: watchDepartment,
+      });
+      toast.success(isChecked ? "Assigned as Department Head" : "Removed from Department Head");
+    } catch (error) {
+      ToastHandleAxiosCatch(error);
+    }
+  };
+
   return (
     <>
       {isError ? <p>An error ocurred.</p> : isLoading && <p>Loading...</p>}
@@ -213,13 +253,12 @@ const EditEmploymentDetails: React.FC = () => {
               data={departmentData}
               register={register("newDepartment")}
             />
-            {(fetchData.selectData.department.find((d) => d.id === watchDepartment)?.head_id === departmentHead ||
-              fetchData.selectData.department.find((d) => d.id === watchDepartment,)?.head_id === null) 
-              && (
+            {showHeadCheckbox && (
               <label className="form-checkbox">
-                <input 
-                type="checkbox" {...register("newIsDepartmentHead")} 
-                />
+                <input
+                  type="checkbox"
+                  {...register("newIsDepartmentHead")}
+                  onChange={handleDepartmentHeadChange}                />
                 <span>Assign as Head</span>
               </label>
             )}

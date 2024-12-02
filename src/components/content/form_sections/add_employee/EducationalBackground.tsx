@@ -2,8 +2,6 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useFieldArray, useFormContext } from "react-hook-form";
 
-import { educationLevelData } from "../../../../utils/Types";
-
 import DefaultButton from "../../../../components/ui/button/DefaultButton";
 import FormInput from "../../../../components/ui/layout/FormInput";
 import CustomSelect from "../../../../components/ui/dropdown/CustomSelect";

@@ -1,13 +1,12 @@
-import { Outlet, useLocation, useParams } from "react-router-dom";
+import { Outlet, useParams } from "react-router-dom";
 import PageHeader from "../components/content/PageHeader";
-import MainProfileCard from "../components/ui/cards/MainProfileCard";
-import ProfileCards from "../components/ui/cards/ProfileCards";
-import EducationCard from "../components/ui/cards/EducationCard";
+
 // NEEDS RESOLVE
 import { wordedDate } from "../utils/Functions";
 import { useModalContext } from "../context/ModalContext";
 import { useFetchData } from "../hooks/useFetchData";
 import { UserProfile } from "../utils/Types";
+import MainProfileCard from "../components/ui/Cards/MainProfileCard";
 
 const ProfileLayout = () => {
   const breadcrumbs = [
@@ -17,7 +16,7 @@ const ProfileLayout = () => {
 
   const { employeeNumberPCC } = useParams();
 
-  const { openModal, refreshParent } = useModalContext();
+  const { refreshParent } = useModalContext();
   const { tableData, isError, isLoading } = useFetchData<UserProfile>(
     `/v1/profile/profile_information/${employeeNumberPCC}`,
     refreshParent,

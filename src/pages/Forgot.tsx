@@ -1,11 +1,12 @@
 const Forgot: React.FC = () => {
+  /*
   const data = [
     { id: 1, name: "John Doe", email: "john@example.com", role: "Admin" },
     { id: 2, name: "Jane Smith", email: "jane@example.com", role: "User" },
     { id: 3, name: "Sam Johnson", email: "sam@example.com", role: "Moderator" },
     // Add more data as needed
   ];
-
+*/
   return (
     <>
       {/* <div className="flex h-screen overflow-hidden">

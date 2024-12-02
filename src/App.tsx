@@ -13,7 +13,6 @@ import DashboardLayout from "./layouts/DashboardLayout";
 
 import Login from "./pages/Login";
 import Forgot from "./pages/Forgot";
-import Dashboard from "./pages/Dashboard";
 import Employee from "./pages/Employee";
 import Department from "./pages/Department";
 import ProfileLayout from "./layouts/ProfileLayout";

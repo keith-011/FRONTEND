@@ -278,9 +278,10 @@ export type EditGovernmentNumberValidationType = z.infer<
 >;
 
 
-
-
-export const EditEmploymentDetailsValidation = () => {
+export const EditEmploymentDetailsValidation = (
+  departmentData: Array<{ id: string; department: string }>, 
+  currentDepartmentId: string
+) => {
   return z
     .object({
       newPlantilla: SelectInputRequired,
@@ -291,30 +292,50 @@ export const EditEmploymentDetailsValidation = () => {
 
       newIsDepartmentHead: z.boolean(),
 
-      newDesignation: TextInput (true, 1, 75).regex(
+      newDesignation: TextInput(true, 1, 75).regex(
         /^[A-Za-z\s]+$/,
-        "Invalid input.",
+        "Invalid input."
       ),
 
-      newCategory: SelectInputRequired ,
+      newCategory: SelectInputRequired,
+
       newWithAdminFunction: z.boolean(),
 
-      newCivilServiceEligibility: TextInput (false, 0, 75)
+      newCivilServiceEligibility: TextInput(false, 0, 75)
         .nullable()
         .transform((value) => {
           return value === "" ? null : value;
         })
         .refine(
           (value) => value === null || /^[A-Za-zÀ-ÿ\s'-]+$/.test(value),
-          "Invalid input.",
+          "Invalid input."
         ),
 
-      newDailyRate: TextInput (false, 0, 25)
+      newDailyRate: TextInput(false, 0, 25)
         .nullable()
         .transform((value) => {
           return value === "" ? null : value;
         }),
+    })
+    .superRefine((data, ctx) => {
+      const selectedDepartment = departmentData.find(
+      (dept) => dept.id === data.newDepartment 
+      );
+
+      if (
+        selectedDepartment && 
+        currentDepartmentId !== selectedDepartment.id
+      ) {
+        ctx.addIssue({
+          code: ZodIssueCode.custom,
+          path: ["newDepartment"],
+          message:
+            "You cannot change departments while still being the head of another department.",
+        });
+      }
+      console.log("data.newDepartment", data.newDepartment)
     });
+    
 };
 
 export type EditEmploymentDetailsValidationType = z.infer<

@@ -1,6 +1,5 @@
 import React from "react";
 import SettingsIcon from "@mui/icons-material/Settings";
-import ProfileNavigationButton from "./ProfileNavigationButton";
 import { wordedDate } from "../../../utils/Functions";
 import { NavLink } from "react-router-dom";
 import { UserProfile } from "../../../utils/Types";
@@ -12,6 +11,7 @@ interface Props {
   navButtons: { text: string; link: string }[];
 }
 
+/*
 const getStatusColor = (status: string) => {
   switch (status) {
     case "Active":
@@ -28,7 +28,7 @@ const getStatusColor = (status: string) => {
       return "bg-gray-600";
   }
 };
-
+*/
 const MainProfileCard: React.FC<Props> = ({
   mainData,
   rightContent,

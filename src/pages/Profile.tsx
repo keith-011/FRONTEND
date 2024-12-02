@@ -1,8 +1,8 @@
 import { useOutletContext } from "react-router-dom";
 import { UserProfile } from "../utils/Types";
-import ProfileCards from "../components/ui/cards/ProfileCards";
+
 import { wordedDate } from "../utils/Functions";
-import EducationCard from "../components/ui/cards/EducationCard";
+
 import { useModalContext } from "../context/ModalContext";
 import EditAccountInformation from "../components/modals/profile_sections/EditAccountInformation";
 import EditContactInformation from "../components/modals/profile_sections/EditContactInformation";
@@ -10,10 +10,12 @@ import EditGovernmentNumber from "../components/modals/profile_sections/EditGove
 import EditPersonalInformation from "../components/modals/profile_sections/EditPersonalInformation";
 import EditEmploymentDetails from "../components/modals/profile_sections/EditEmploymentDetails";
 import EditEducationalAttainment from "../components/modals/profile_sections/EditEducationalAttainment";
+import ProfileCards from "../components/ui/Cards/ProfileCards";
+import EducationCard from "../components/ui/Cards/EducationCard";
 
 const Profile: React.FC = () => {
   const profileData = useOutletContext<UserProfile>();
-  const { openModal, refreshParent } = useModalContext();
+  const { openModal } = useModalContext();
 
   const profileDetail = profileData.profile;
   const educationDetail = profileData.education;

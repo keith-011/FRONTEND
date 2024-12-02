@@ -1,53 +1,26 @@
-import React, { useState } from 'react';
+import React from "react";
 
 interface SwitchButtonProps {
-  initialChecked?: boolean;
-  onChange?: (checked: boolean) => void;
+  checked: boolean;
+  onChange: (checked: boolean) => void;
 }
 
-const SwitchButton: React.FC<SwitchButtonProps> = ({ initialChecked = false, onChange }) => {
-  const [checked, setChecked] = useState(initialChecked);
-
-  const handleSwitchChange = () => {
-    const newChecked = !checked;
-    setChecked(newChecked);
-    if (onChange) {
-      onChange(newChecked);
-    }
-  };
-
-  // Type the styles with React.CSSProperties for type safety
-  const switchStyles: { [key: string]: React.CSSProperties } = {
-    switchContainer: {
-      display: 'inline-flex',
-      cursor: 'pointer',
-    },
-    switchButton: {
-      width: '40px',
-      height: '20px',
-      borderRadius: '20px',
-      backgroundColor: checked ? '#4caf50' : '#667479',
-      position: 'relative',
-      transition: 'background-color 0.3s ease',
-    },
-    switchCircle: {
-      position: 'absolute',
-      top: '2px',
-      left: checked ? '20px' : '2px',
-      width: '16px',
-      height: '16px',
-      borderRadius: '50%',
-      backgroundColor: 'white',
-      transition: 'transform 0.3s ease',
-    },
-  };
-
+const SwitchButton: React.FC<SwitchButtonProps> = ({ checked, onChange }) => {
   return (
-    <div style={switchStyles.switchContainer} onClick={handleSwitchChange}>
-      <div style={switchStyles.switchButton}>
-        <div style={switchStyles.switchCircle}></div>
-      </div>
-    </div>
+    <label className="relative inline-flex items-center cursor-pointer">
+      <input
+        type="checkbox"
+        className="sr-only peer"
+        checked={checked}
+        onChange={(e) => onChange(e.target.checked)}
+      />
+      <div
+        className={`w-10 h-5 bg-gray-300 rounded-full transition-all peer-checked:bg-forest-500`}
+      ></div>
+      <span
+        className={`absolute left-0 top-0.5 w-4 h-4 bg-white rounded-full shadow-md transform transition-all peer-checked:translate-x-5`}
+      ></span>
+    </label>
   );
 };
 

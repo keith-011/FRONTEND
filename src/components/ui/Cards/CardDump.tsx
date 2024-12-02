@@ -1,5 +1,4 @@
 import React from "react";
-import DefaultButton from "../button/DefaultButton";
 import SettingsIcon from "@mui/icons-material/Settings";
 import { SvgIconComponent } from "@mui/icons-material";
 

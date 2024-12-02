@@ -1,5 +1,4 @@
 import React from "react";
-import { SvgIconComponent } from "@mui/icons-material";
 import EditIcon from "@mui/icons-material/Edit";
 import { twMerge } from "tailwind-merge";
 

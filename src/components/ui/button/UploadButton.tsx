@@ -19,13 +19,13 @@ const UploadButton: React.FC<Props> = ({
   const [fileName, setFileName] = useState<string>("No file uploaded.");
   const buttonRef = useRef<HTMLInputElement | null>(null);
 
-  const { register, watch } = useFormContext<AddEmployeeForm>();
+  const { register } = useFormContext<AddEmployeeForm>();
 
   const handleClick = () => {
     buttonRef.current?.click();
   };
 
-  const heh = watch("birth_certificate");
+ // const heh = watch("birth_certificate");
 
   const onUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     let file = e.target.files;
